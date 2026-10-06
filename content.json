@@ -1,0 +1,186 @@
+{
+  "brand": {
+    "name": "KYNSHIP",
+    "tagline_ar": "مطابخ وخزائن من التصميم للتسليم",
+    "tagline_en": "Precision<b>.in Every Piece</b>",
+    "sub": "نحوّل أحلامك لواقع بأعلى جودة وأسرع تسليم",
+    "bar": "ضمان لحد 10 سنين · استشارة تصميم مجانية"
+  },
+  "contact": {
+    "whatsapp": "201010104140",
+    "instagram": "https://www.instagram.com/kyn_ship/",
+    "tiktok": "https://www.tiktok.com/@kyn_ship",
+    "x": "https://x.com/kyn_ship",
+    "threads": "https://www.threads.com/@kyn_ship",
+    "facebook": "https://www.facebook.com/profile.php?id=61579391587837",
+    "pinterest": "https://www.pinterest.com/kynship/"
+  },
+  "nav": [
+    {
+      "label": "الأقسام",
+      "href": "#cats"
+    },
+    {
+      "label": "قصتنا",
+      "href": "#story"
+    },
+    {
+      "label": "أعمالنا",
+      "href": "#proj"
+    },
+    {
+      "label": "استوديو التصميم",
+      "href": "#lab"
+    },
+    {
+      "label": "تواصل",
+      "href": "#contact"
+    }
+  ],
+  "cats": [
+    {
+      "id": "cat-kitchen",
+      "label": "مطابخ",
+      "href": "#contact",
+      "img": "images/proj-wood.jpg"
+    },
+    {
+      "id": "cat-aluminium",
+      "label": "ألوميتال",
+      "href": "#contact",
+      "img": "images/cat-aluminium.jpg"
+    },
+    {
+      "id": "cat-3d",
+      "label": "تصاميم 3D",
+      "href": "#lab",
+      "img": "images/cat-3d.jpg"
+    },
+    {
+      "id": "cat-wardrobes",
+      "label": "دواليب وخزائن",
+      "href": "#contact",
+      "img": "images/cat-wardrobes.jpg"
+    }
+  ],
+  "features": [
+    {
+      "icon": "shield",
+      "title": "ضمان 10 سنين",
+      "text": "ضمان مكتوب على الخامات والتنفيذ مع خدمة ما بعد البيع."
+    },
+    {
+      "icon": "truck",
+      "title": "تسليم سريع",
+      "text": "مواعيد واضحة والتزام بيها من القياس للتركيب."
+    },
+    {
+      "icon": "pen",
+      "title": "استشارة تصميم مجانية",
+      "text": "فريقنا يساعدك تختار التصميم والخامات المناسبة لمساحتك."
+    }
+  ],
+  "story": {
+    "title": "قصة Kynship",
+    "text": "بدأنا من فكرة بسيطة: مطبخك يستاهل دقة في كل قطعة. بنشتغل بالألوميتال والخامات المتينة، وبنصمم وننفذ ونركّب بفريق واحد، عشان النتيجة تطلع زي ما اتخيلتها بالظبط.",
+    "img": "images/cat-wardrobes.jpg",
+    "cta": "اعرف أكتر"
+  },
+  "banner": {
+    "img": "images/cat-aluminium.jpg",
+    "cta": "أحدث الأعمال",
+    "href": "#proj"
+  },
+  "projects_head": "Projects by Kynship",
+  "projects_sub": "كل مشروع بنصممه بتفاصيل دقيقة عشان يطلع مطبخ عملي وجميل ومريح في الاستخدام اليومي.",
+  "projects": [
+    {
+      "img": "images/proj-shorouk.jpg",
+      "alt": "مطبخ عميلتنا في الشروق — فاخر وعملي",
+      "title": "مطبخ الشروق",
+      "caption": "تصميم فاخر وعملي، خامات وإكسسوارات مختارة بعناية."
+    },
+    {
+      "img": "images/proj-wood.jpg",
+      "alt": "مطبخ خشب بسيط وعملي",
+      "title": "مطبخ خشب",
+      "caption": "خشب متصمّم بعناية — بسيط، عملي، وشكله يفتح النفس."
+    }
+  ],
+  "lab": {
+    "title": "استوديو التصميم",
+    "sub": "اختار اللون والخامة والأبعاد والملحقات، والمعاينة بتتغير قدامك فورًا."
+  },
+  "contact_section": {
+    "title": "اطلب عرض سعر",
+    "name_ph": "الاسم",
+    "phone_ph": "رقم الموبايل",
+    "types": [
+      "مطبخ",
+      "دولاب",
+      "شبابيك وأبواب ألوميتال"
+    ],
+    "msg_ph": "تفاصيل إضافية (المساحة، المنطقة…)",
+    "submit": "ابعت على واتساب"
+  },
+  "footer": {
+    "about": {
+      "title": "عن Kynship",
+      "links": [
+        {
+          "label": "قصتنا",
+          "href": "#story"
+        },
+        {
+          "label": "أعمالنا",
+          "href": "#proj"
+        },
+        {
+          "label": "وظائف",
+          "href": "#contact"
+        }
+      ]
+    },
+    "services": {
+      "title": "خدماتنا",
+      "links": [
+        {
+          "label": "مطابخ",
+          "href": "#cats"
+        },
+        {
+          "label": "دواليب",
+          "href": "#cats"
+        },
+        {
+          "label": "شبابيك وأبواب",
+          "href": "#cats"
+        },
+        {
+          "label": "تصاميم 3D",
+          "href": "#lab"
+        }
+      ]
+    },
+    "support": {
+      "title": "خدمة العملاء",
+      "links": [
+        {
+          "label": "تواصل معنا",
+          "href": "#contact"
+        },
+        {
+          "label": "الضمان",
+          "href": "#contact"
+        },
+        {
+          "label": "الأسئلة الشائعة",
+          "href": "#contact"
+        }
+      ]
+    },
+    "social_title": "تابعنا",
+    "copyright": "© 2026 Kynship - Updated"
+  },
+  "styles": {}
+}

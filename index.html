@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kynship | كينشب – مطابخ ودواليب</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;600;700&family=Almarai:wght@300;400;700&family=Amiri:wght@400;700&family=Cairo:wght@300;400;600;700;900&family=Changa:wght@400;600;700&family=Inter:wght@300;400;600;700&family=Noto+Kufi+Arabic:wght@300;400;600;700&family=Outfit:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Readex+Pro:wght@300;400;600;700&family=Tajawal:wght@300;400;500;700&display=swap">
+<style>
+:root{--bg:#FFFFFF;--soft:#F4F1EA;--ink:#0A1E36;--mute:#5d6b7d;--line:rgba(10,30,54,.14);--navy:#0A1E36;--navy2:#0F2B4C;--card:#12335a;--on:#F4F1E8;--nm:#9FB3CC;--gold:#F5B800;--gd:#8a6700;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0A1E36;--soft:#0F2B4C;--ink:#F4F1E8;--mute:#9FB3CC;--line:rgba(244,241,232,.16)}}
+:root[data-theme="dark"]{--bg:#0A1E36;--soft:#0F2B4C;--ink:#F4F1E8;--mute:#9FB3CC;--line:rgba(244,241,232,.16)}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{background:var(--bg);color:var(--ink);font-family:Cairo,Tahoma,sans-serif;line-height:1.8;font-weight:400}
+a{color:inherit}
+.w{max-width:1180px;margin:auto;padding:0 24px}
+.bar{background:var(--navy);color:var(--gold);text-align:center;font-size:13px;padding:6px}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--bg);border-bottom:1px solid var(--line)}
+nav .w{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{font-weight:900;font-size:22px;letter-spacing:.45em;text-decoration:none}
+nav ul{display:flex;gap:30px;list-style:none;padding:0}
+nav ul a{text-decoration:none;font-size:15px}
+nav ul a:hover,nav ul a:focus-visible{color:var(--gd)}
+.btn{display:inline-block;background:var(--gold);color:#0A1E36;padding:11px 28px;border:0;border-radius:30px;cursor:pointer;text-decoration:none;font:600 15px Cairo,sans-serif}
+.btn.d{background:var(--navy);color:var(--on)}
+.btn.o{background:none;color:var(--on);border:1px solid rgba(244,241,232,.4)}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.hero{background:radial-gradient(900px 420px at 80% 0,#235b96 0,transparent 70%),linear-gradient(160deg,#0F2B4C,#081628);color:var(--on);text-align:center;padding:130px 0 120px}
+.hero h1{font-size:clamp(38px,7vw,80px);font-weight:300;line-height:1.15;letter-spacing:.02em}
+.hero h1 b{display:block;font-weight:900;color:var(--gold)}
+.hero p{color:var(--nm);margin:20px auto 30px;max-width:48ch}
+.hero .cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+section{padding:72px 0}
+h2{font-size:clamp(24px,3.4vw,34px);font-weight:600;text-align:center;margin-bottom:34px}
+.cats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.cats a{text-decoration:none;text-align:center}
+.cats i{display:block;aspect-ratio:3/4;margin-bottom:10px;border-radius:2px;background-size:cover;background-position:center;transition:transform .25s}
+.cats a:hover i{transform:translateY(-4px)}
+.strip{background:var(--soft);padding:54px 0}
+.strip .w{display:grid;grid-template-columns:repeat(3,1fr);gap:34px}
+.strip>div{display:flex;gap:16px;align-items:flex-start}
+.strip svg{width:44px;height:44px;flex:none;fill:none;stroke:var(--gd);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.strip h3{font-size:18px;margin-bottom:4px}
+.strip p{color:var(--mute);font-size:14px}
+.story .w{display:grid;grid-template-columns:1.1fr 1fr;gap:44px;align-items:center}
+.ph{border-radius:3px;background-size:cover;background-position:center;min-height:380px}
+.story h2{text-align:right}
+.story p{color:var(--mute);margin-bottom:22px}
+.banner{position:relative;min-height:380px;display:grid;place-items:end center;padding:40px;background-size:cover;background-position:center}
+.banner::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,20,38,.15),rgba(8,20,38,.75))}
+.banner .btn{position:relative;z-index:2}
+.proj .w{display:grid;grid-template-columns:1.1fr 1.1fr;gap:36px;align-items:center}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.card{background:var(--bg);border:1px solid var(--line);border-radius:4px;overflow:hidden;transition:transform .25s,box-shadow .25s}
+.card:hover{transform:translateY(-4px);box-shadow:0 14px 34px rgba(10,30,54,.12)}
+.card .ph{min-height:230px}
+.card .tx{padding:16px 18px 20px}
+.card h3{font-size:17px;margin-bottom:4px}
+.card p{color:var(--mute);font-size:14px}
+.proj .lead h2{text-align:right}
+.proj .lead p{color:var(--mute)}
+.lab{background:var(--navy);color:var(--on)}
+.lab .sub{color:var(--nm);text-align:center;max-width:60ch;margin:-16px auto 30px}
+.cust{display:grid;grid-template-columns:1.3fr 1fr;gap:28px}
+.stage svg{width:100%;height:auto;border-radius:3px}
+.panel{background:var(--soft);color:var(--ink);border-radius:4px;padding:24px;display:flex;flex-direction:column;gap:18px}
+.panel .pl{font-size:13px;font-weight:600;color:var(--mute);display:block;margin-bottom:8px}
+.sw{display:flex;gap:10px;flex-wrap:wrap}
+.sw button{width:34px;height:34px;border-radius:50%;border:2px solid var(--line);cursor:pointer}
+.sw button[aria-pressed="true"]{border-color:var(--navy);box-shadow:0 0 0 2px var(--gold)}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chips button{background:var(--bg);border:1px solid var(--line);border-radius:20px;padding:7px 14px;font:400 13px Cairo,sans-serif;cursor:pointer;color:var(--ink)}
+.chips button[aria-pressed="true"]{background:var(--navy);color:var(--on);border-color:var(--navy)}
+.panel input[type=range]{width:100%;accent-color:var(--gold)}
+.panel label{font-size:14px}
+.sum{font-size:13px;color:var(--mute);border-top:1px dashed var(--line);padding-top:12px;min-height:20px}
+.contact{background:var(--soft)}
+form{display:grid;gap:12px;max-width:560px;margin:auto}
+form input,form select,form textarea{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:3px;background:var(--bg);color:var(--ink);font:400 15px Cairo,sans-serif}
+form textarea{resize:vertical}
+footer{background:var(--navy);color:var(--nm);padding:54px 0 26px}
+footer .w{display:grid;grid-template-columns:repeat(4,1fr);gap:30px}
+footer h4{color:var(--on);font-size:15px;margin-bottom:12px}
+footer a{display:block;text-decoration:none;font-size:14px;padding:3px 0}
+footer a:hover{color:var(--gold)}
+.social{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+.social a{width:38px;height:38px;border:1px solid rgba(244,241,232,.25);border-radius:50%;display:grid;place-items:center;padding:0}
+.social a:hover{border-color:var(--gold)}
+.social svg{width:17px;height:17px;fill:currentColor}
+.cp{border-top:1px solid rgba(244,241,232,.14);margin-top:34px;padding-top:18px;text-align:center;font-size:13px}
+.fab{position:fixed;bottom:22px;left:22px;z-index:8;width:54px;height:54px;border-radius:50%;background:#25D366;color:#fff;display:grid;place-items:center;box-shadow:0 8px 22px rgba(0,0,0,.28);text-decoration:none}
+.fab svg{width:28px;height:28px;fill:currentColor}
+/* ===== استجابة فائقة لجميع مقاسات الشاشات (Responsive Design) ===== */
+.menu-btn{
+ display:none;background:none;border:1px solid var(--line);border-radius:6px;
+ width:40px;height:40px;padding:8px 7px;cursor:pointer;flex-direction:column;
+ justify-content:space-around;align-items:center;transition:all .2s;flex-shrink:0;
+}
+.menu-btn span{display:block;width:22px;height:2px;background:var(--ink);border-radius:2px;transition:all .25s}
+.menu-btn:hover{border-color:var(--gold);background:rgba(245,184,0,.08)}
+.mobile-menu{
+ display:none;position:absolute;top:100%;left:0;right:0;background:var(--bg);
+ border-bottom:1px solid var(--line);box-shadow:0 12px 30px rgba(0,0,0,.1);
+ padding:18px 24px;flex-direction:column;gap:8px;z-index:99;animation:slideDown .2s ease-out;
+}
+@keyframes slideDown{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+.mobile-menu.open{display:flex}
+.mobile-menu a{text-decoration:none;font-size:16px;font-weight:600;padding:10px 0;border-bottom:1px solid rgba(10,30,54,.06);color:var(--ink);transition:color .15s}
+.mobile-menu a:hover{color:var(--gold)}
+
+/* شاشات التابلت والشاشات المتوسطة (<= 900px) */
+@media(max-width:900px){
+ html{scroll-padding-top:74px}
+ .cats{grid-template-columns:repeat(2,1fr)}
+ .strip .w{grid-template-columns:1fr;gap:24px}
+ .story .w,.proj .w,.cust{grid-template-columns:1fr}
+ footer .w{grid-template-columns:repeat(2,1fr);gap:24px}
+ nav ul{display:none}
+ .menu-btn{display:flex}
+ .hero{padding:90px 0 70px}
+ .hero h1{font-size:clamp(32px, 8vw, 56px)}
+ .story h2,.proj .lead h2{text-align:center}
+ .story p,.proj .lead p{text-align:center}
+}
+
+/* شاشات الهواتف الذكية (<= 640px) */
+@media(max-width:640px){
+ .w{padding:0 16px}
+ nav .w{height:62px}
+ .bar{font-size:12px;padding:6px 8px}
+ .hero{padding:64px 0 44px}
+ .hero h1{font-size:clamp(26px, 8vw, 40px);letter-spacing:0}
+ .hero p{font-size:14px;margin:14px auto 22px}
+ .hero .cta{flex-direction:column;align-items:center;gap:10px}
+ .hero .cta .btn{width:100%;max-width:280px;text-align:center}
+ .grid2{grid-template-columns:1fr;gap:16px}
+ .card .ph{min-height:200px}
+ .banner{min-height:220px;padding:24px 16px}
+ .panel{padding:16px;gap:14px}
+ .cats{gap:12px}
+ .story .ph{min-height:240px}
+ footer .w{grid-template-columns:1fr;gap:22px;text-align:center}
+ .social{justify-content:center}
+ section{padding:54px 0}
+ .fab{bottom:16px;left:16px;width:48px;height:48px}
+ .fab svg{width:24px;height:24px}
+}
+
+/* شاشات الهواتف الصغيرة جداً (<= 380px) */
+@media(max-width:380px){
+ .logo{font-size:18px;letter-spacing:.25em}
+ .btn{padding:8px 16px;font-size:13px}
+ .cats{gap:8px}
+ .cats i{aspect-ratio:3/4}
+}
+</style>
+</head>
+<body>
+<div class="bar" data-k="brand.bar">ضمان لحد 10 سنين · استشارة تصميم مجانية</div>
+<nav id="mainNav">
+ <div class="w">
+  <a class="logo" href="#top" data-k="brand.name">KYNSHIP</a>
+  <ul id="navList"></ul>
+  <div style="display:flex;align-items:center;gap:8px">
+   <a class="btn d" href="#contact" id="navCta">اطلب عرض سعر</a>
+   <button type="button" id="menuToggleBtn" class="menu-btn" aria-label="فتح القائمة">
+    <span></span><span></span><span></span>
+   </button>
+  </div>
+ </div>
+ <div id="mobileMenu" class="mobile-menu"></div>
+</nav>
+
+<header class="hero" id="top">
+ <div class="w">
+  <h1 data-k="brand.tagline_en">Precision<b>in Every Piece.</b></h1>
+  <p data-k="brand.sub">نحوّل أحلامك لواقع بأعلى جودة وأسرع تسليم</p>
+  <div class="cta">
+   <a class="btn" href="#lab">صمّم مطبخك</a>
+   <a class="btn o" href="#proj">شوف أعمالنا</a>
+  </div>
+ </div>
+</header>
+
+<section id="cats">
+ <div class="w">
+  <h2>اكتشف أقسامنا</h2>
+  <div class="cats" id="catGrid"></div>
+ </div>
+</section>
+
+<div class="strip">
+ <div class="w" id="featGrid"></div>
+</div>
+
+<section class="story" id="story">
+ <div class="w">
+  <div class="ph" id="storyImg" role="img"></div>
+  <div class="lead">
+   <h2 id="storyTitle">قصة Kynship</h2>
+   <p id="storyText"></p>
+   <a class="btn d" href="#contact" id="storyCta">اعرف أكتر</a>
+  </div>
+ </div>
+</section>
+
+<div class="banner" id="banner"><a class="btn" href="#proj" id="bannerCta">أحدث الأعمال</a></div>
+
+<section class="proj" id="proj">
+ <div class="w">
+  <div class="grid2" id="projGrid"></div>
+  <div class="lead">
+   <h2 id="projHead">Projects by Kynship</h2>
+   <p id="projSub"></p>
+  </div>
+ </div>
+</section>
+
+<section class="lab" id="lab">
+ <div class="w">
+  <h2 id="labTitle">استوديو التصميم</h2>
+  <p class="sub" id="labSub"></p>
+  <div class="cust">
+   <div class="stage"><svg id="kv" viewBox="0 0 600 380" role="img" aria-label="معاينة المطبخ"></svg></div>
+   <div class="panel">
+    <div><span class="pl">لون الدواليب</span><div class="sw" id="sw1"></div></div>
+    <div><span class="pl">خامة الرخامة</span><div class="chips" id="ch1"></div></div>
+    <div><span class="pl">نوع المقبض</span><div class="chips" id="ch2"></div></div>
+    <div><label for="wd">طول المطبخ: <b id="wv"></b> متر</label><input id="wd" type="range" min="2" max="6" step="0.5" value="3.5"></div>
+    <div><span class="pl">التقسيم</span><div class="chips" id="ch3"></div></div>
+    <div><span class="pl">ملحقات</span><div class="chips" id="ch4"></div></div>
+    <p class="sum" id="sum"></p>
+    <a class="btn" id="send" href="#contact">ابعت التصميم لفريقنا</a>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="contact" id="contact">
+ <div class="w">
+  <h2 id="contactTitle">اطلب عرض سعر</h2>
+  <form id="fm">
+   <input type="text" id="nm" placeholder="الاسم" required aria-label="الاسم">
+   <input type="tel" id="ph2" placeholder="رقم الموبايل" required aria-label="رقم الموبايل">
+   <select id="ty" aria-label="نوع الطلب"></select>
+   <textarea id="ms" rows="4" placeholder="تفاصيل إضافية (المساحة، المنطقة…)" aria-label="تفاصيل"></textarea>
+   <button class="btn d" type="submit">ابعت على واتساب</button>
+  </form>
+ </div>
+</section>
+
+<footer>
+ <div class="w" id="footGrid"></div>
+ <p class="cp" id="cp"></p>
+</footer>
+
+<a class="fab" id="fab" href="#" aria-label="واتساب"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 00-8.6 15L2 22l5.2-1.4A10 10 0 1012 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2c.1.2.1.4 0 .6l-.4.6c-.2.2-.3.4-.1.7.7 1.1 1.5 1.9 2.7 2.5.3.2.5.1.7-.1l.8-1c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.5.4.1.2.1.8-.1 1.4z"/></svg></a>
+
+<script>
+let C={};
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function loadCustomFonts(customFonts){
+ if(!Array.isArray(customFonts)) return;
+ customFonts.forEach(f => {
+  if(f.type === 'google' && f.name){
+   const id = 'gf_' + f.name.replace(/\s+/g, '_');
+   if(!document.getElementById(id)){
+    const link = document.createElement('link');
+    link.id = id; link.rel = 'stylesheet';
+    link.href = `https://fonts.googleapis.com/css2?family=${encodeURIComponent(f.name)}:wght@300;400;600;700;900&display=swap`;
+    document.head.appendChild(link);
+   }
+  } else if(f.type === 'file' && f.name && f.url){
+   const id = 'ff_' + f.name.replace(/\s+/g, '_');
+   if(!document.getElementById(id)){
+    const st = document.createElement('style');
+    st.id = id;
+    st.textContent = `@font-face { font-family: '${f.name}'; src: url('${f.url}'); font-display: swap; }`;
+    document.head.appendChild(st);
+   }
+  }
+ });
+}
+
+function applyStyles(styles){
+ if(!styles) return;
+ Object.entries(styles).forEach(([k, st])=>{
+  const el = document.getElementById(k) || document.querySelector(`[data-k="${k}"]`) || document.querySelector(k);
+  if(el){
+   if(st.color) el.style.color = st.color;
+   if(st.bg) el.style.background = st.bg;
+   if(st.fontSize) el.style.fontSize = st.fontSize;
+   if(st.fontWeight) el.style.fontWeight = st.fontWeight;
+   if(st.fontFamily) el.style.fontFamily = `'${st.fontFamily}', Cairo, sans-serif`;
+   if(st.textAlign) el.style.textAlign = st.textAlign;
+   if(st.bgSize) el.style.backgroundSize = st.bgSize;
+   if(st.bgPosition) el.style.backgroundPosition = st.bgPosition;
+   if(st.bgRepeat) el.style.backgroundRepeat = st.bgRepeat;
+  }
+ });
+}
+
+async function boot(){
+ try {
+  const local = localStorage.getItem('kyn_content');
+  if(local){
+   C = JSON.parse(local);
+  } else {
+   C = await fetch('content.json?v=' + Date.now(), {cache:'no-store'}).then(r=>r.json());
+  }
+ } catch(e) {
+  try { C = await fetch('content.json', {cache:'no-store'}).then(r=>r.json()); } catch(e2){}
+ }
+
+ loadCustomFonts(C.customFonts);
+ if(C.globalFont){
+  document.body.style.fontFamily = `'${C.globalFont}', Cairo, Tahoma, sans-serif`;
+ }
+
+ document.title='Kynship | كينشب – مطابخ ودواليب';
+ $('navList').innerHTML=(C.nav||[]).map(n=>`<li><a href="${n.href}">${esc(n.label)}</a></li>`).join('');
+ const mMenu = $('mobileMenu');
+ if (mMenu && C.nav) {
+  mMenu.innerHTML = C.nav.map(n => `<a href="${n.href}" onclick="$('mobileMenu').classList.remove('open')">${esc(n.label)}</a>`).join('');
+ }
+ $('catGrid').innerHTML=(C.cats||[]).map(c=>{
+  const fit = c.fit || 'cover';
+  const pos = c.position || 'center';
+  const bg = c.bgColor || (fit === 'contain' ? '#0A1E36' : 'transparent');
+  return `<a class="cat-item" href="${c.href}"><i style="background-image:url('${c.img}');background-size:${fit};background-position:${pos};background-color:${bg};background-repeat:no-repeat"></i><span>${esc(c.label)}</span></a>`;
+ }).join('');
+ const ico={shield:'M24 4l16 6v12c0 11-7 18-16 22C15 40 8 33 8 22V10z M17 24l5 5 9-10',truck:'M4 14h26v18H4z M30 20h8l6 6v6H30 M14 36a4 4 0 100-8 4 4 0 000 8z M36 36a4 4 0 100-8 4 4 0 000 8z',pen:'M6 40l4-2 22-22-4-4L6 34z M28 10l6 6'};
+ $('featGrid').innerHTML=(C.features||[]).map(f=>`<div><svg viewBox="0 0 48 48"><path d="${ico[f.icon]||ico.shield}"/></svg><span><h3>${esc(f.title)}</h3><p>${esc(f.text)}</p></span></div>`).join('');
+ const sFit = C.story?.fit || 'cover';
+ const sPos = C.story?.position || 'center';
+ const sBg = C.story?.bgColor || (sFit === 'contain' ? '#0A1E36' : 'transparent');
+ $('storyImg').style.backgroundImage=`url('${C.story?.img || "images/banner-2.jpg"}')`;
+ $('storyImg').style.backgroundSize=sFit;
+ $('storyImg').style.backgroundPosition=sPos;
+ $('storyImg').style.backgroundColor=sBg;
+ $('storyImg').style.backgroundRepeat='no-repeat';
+ $('storyTitle').textContent=C.story?.title || 'قصة Kynship'; $('storyText').textContent=C.story?.text || ''; $('storyCta').textContent=C.story?.cta || 'اعرف أكتر';
+ const bFit = C.banner?.fit || 'cover';
+ const bPos = C.banner?.position || 'center';
+ const bBg = C.banner?.bgColor || (bFit === 'contain' ? '#081628' : 'transparent');
+ $('banner').style.backgroundImage=`url('${C.banner?.img || "images/banner-main.jpg"}')`;
+ $('banner').style.backgroundSize=bFit;
+ $('banner').style.backgroundPosition=bPos;
+ $('banner').style.backgroundColor=bBg;
+ $('banner').style.backgroundRepeat='no-repeat'; $('bannerCta').textContent=C.banner?.cta || 'أحدث الأعمال'; $('bannerCta').href=C.banner?.href || '#proj';
+ $('projHead').textContent=C.projects_head || 'Projects by Kynship'; $('projSub').textContent=C.projects_sub || '';
+ $('projGrid').innerHTML=(C.projects||[]).map(p=>{
+  const fit = p.fit || 'cover';
+  const pos = p.position || 'center';
+  const bg = p.bgColor || (fit === 'contain' ? '#0A1E36' : 'transparent');
+  return `<div class="card"><div class="ph" style="background-image:url('${p.img}');background-size:${fit};background-position:${pos};background-color:${bg};background-repeat:no-repeat" role="img" aria-label="${esc(p.alt)}"></div><div class="tx"><h3>${esc(p.title)}</h3><p>${esc(p.caption)}</p></div></div>`;
+ }).join('');
+ if(C.lab){ $('labTitle').textContent=C.lab.title; $('labSub').textContent=C.lab.sub; }
+ if(C.contact_section){
+  $('contactTitle').textContent=C.contact_section.title;
+  $('ty').innerHTML=(C.contact_section.types||[]).map(t=>`<option>${esc(t)}</option>`).join('');
+  $('nm').placeholder=C.contact_section.name_ph || 'الاسم'; $('ph2').placeholder=C.contact_section.phone_ph || 'رقم الموبايل';
+  $('ms').placeholder=C.contact_section.msg_ph || 'تفاصيل إضافية…';
+  document.querySelector('#fm button').textContent=C.contact_section.submit || 'ابعت على واتساب';
+ }
+ const F=C.footer||{}, cols=[F.about,F.services,F.support].filter(Boolean);
+ $('footGrid').innerHTML=cols.map(c=>`<div><h4>${esc(c.title)}</h4>${(c.links||[]).map(l=>`<a href="${l.href}">${esc(l.label)}</a>`).join('')}</div>`).join('')
+  +`<div><h4>${esc(F.social_title||'تابعنا')}</h4><div class="social" id="socialRow"></div></div>`;
+ const S=C.contact||{}, paths={instagram:'M12 2c2.7 0 3 0 4.1.1 1.1 0 1.8.2 2.4.5.7.3 1.2.6 1.7 1.1.5.5.9 1 1.1 1.7.3.6.4 1.3.5 2.4 0 1.1.1 1.4.1 4.1s0 3-.1 4.1c0 1.1-.2 1.8-.5 2.4a4.5 4.5 0 01-1.1 1.7 4.5 4.5 0 01-1.7 1.1c-.6.3-1.3.4-2.4.5-1.1 0-1.4.1-4.1.1s-3 0-4.1-.1c-1.1 0-1.8-.2-2.4-.5a4.5 4.5 0 01-1.7-1.1 4.5 4.5 0 01-1.1-1.7c-.3-.6-.4-1.3-.5-2.4 0-1.1-.1-1.4-.1-4.1s0-3 .1-4.1c0-1.1.2-1.8.5-2.4A4.5 4.5 0 013.5 3.7 4.5 4.5 0 015.2 2.6c.6-.3 1.3-.4 2.4-.5C8.7 2 9 2 12 2zm0 5a5 5 0 100 10 5 5 0 000-10zm6.5-.8a1.2 1.2 0 100 2.4 1.2 1.2 0 000-2.4zM12 9a3 3 0 110 6 3 3 0 010-6z',tiktok:'M16 2h3a7 7 0 006 6v3a10 10 0 01-6-2v8a7 7 0 11-7-7c.4 0 .7 0 1 .1v3.2a4 4 0 105 3.7V2z',x:'M4 4l7 9-7 7h3l6-6 5 6h5l-8-9 7-7h-3l-5 5-4-5z',threads:'M12 2a10 10 0 100 20 10 10 0 000-20zm5 11.5c-.4 2.3-2 3.6-4.4 3.7-2.6.1-4.3-1.4-4.4-3.9 0-1 .2-1.8.7-2.4.6-.8 1.6-1.2 2.9-1.2 1.2 0 2.1.4 2.6 1.1.4.6.5 1.3.4 2.1-.1.9-.6 1.4-1.3 1.4-.6 0-1-.3-1-.8 0-.5.3-.7.7-.8.2 0 .3-.1.3-.3 0-.4-.4-.7-1.1-.7-.8 0-1.4.5-1.5 1.4-.1 1 .5 1.7 1.6 1.7 1.2 0 2-.7 2.2-2 .2-1.3-.3-2.4-1.4-3-.7-.4-1.6-.5-2.6-.4-2.5.2-4 2-3.9 4.7.1 2.6 1.9 4.2 4.5 4 2.2-.1 3.7-1.3 4-3.3z',facebook:'M22 12a10 10 0 10-11.6 9.9v-7H7.8V12h2.6V9.8c0-2.6 1.5-4 3.9-4 1.1 0 2.3.2 2.3.2v2.5h-1.3c-1.3 0-1.7.8-1.7 1.6V12h2.9l-.5 2.9h-2.4v7A10 10 0 0022 12z',pinterest:'M12 2a10 10 0 00-3.7 19.3c-.1-.8-.2-2 0-2.9l1.2-5.1s-.3-.6-.3-1.5c0-1.4.8-2.5 1.9-2.5.9 0 1.3.7 1.3 1.5 0 .9-.6 2.3-.9 3.6-.2 1 .5 1.9 1.6 1.9 1.9 0 3.3-2.5 3.3-5.4 0-2.3-1.5-3.9-3.8-3.9-2.6 0-4.2 1.9-4.2 4 0 .8.3 1.6.7 2.1.1.1.1.2.1.3l-.3 1.1c0 .2-.2.3-.4.2-1.2-.6-2-2.3-2-3.8 0-3.1 2.3-5.9 6.4-5.9 3.4 0 6 2.4 6 5.6 0 3.7-2.1 6.5-5.4 6.5-1.1 0-2.1-.6-2.4-1.2l-.7 2.6c-.2 1-.9 2.2-1.4 2.9A10 10 0 1012 2z'};
+ $('socialRow').innerHTML=Object.entries({instagram:S.instagram,tiktok:S.tiktok,x:S.x,threads:S.threads,facebook:S.facebook,pinterest:S.pinterest}).map(([k,u])=>`<a href="${u||'#'}" target="_blank" rel="noopener" aria-label="${k}"><svg viewBox="0 0 24 24"><path d="${paths[k]}"/></svg></a>`).join('');
+ $('cp').textContent=F.copyright || '';
+ document.querySelectorAll('[data-k]').forEach(el=>{
+  const k=el.dataset.k; const v=k.split('.').reduce((a,b)=>a?.[b],C);
+  if(v!=null){
+   if(k.includes('tagline_en')) el.innerHTML = v;
+   else el.textContent = v;
+  }
+ });
+ applyStyles(C.styles);
+ lab(); wire();
+}
+window.addEventListener('storage', e => { if (e.key === 'kyn_content') boot(); });
+/* ===== design studio (محتفظظن به كما هو) ===== */
+const WA=C.contact?.whatsapp||'201010104140';
+const cols=[["كحلي","#1F3A5F"],["أخضر زيتي","#1F4A44"],["بيج","#D8CDB8"],["أبيض","#EEEAE2"],["رمادي","#6B6F76"],["خشب","#8A5A33"]];
+const tops=[["رخام فاتح","#E9E6E0"],["جرانيت داكن","#2B2B2E"],["خشب","#A8743F"]];
+const S={c:0,t:0,h:0,w:3.5,l:0,a:new Set()};
+function chips(id,arr,key){const el=$(id);el.innerHTML="";arr.forEach((n,i)=>{const b=document.createElement("button");b.textContent=n;b.setAttribute("aria-pressed",S[key]===i);b.onclick=()=>{S[key]=i;chips(id,arr,key);draw()};el.appendChild(b)})}
+function multi(){const el=$("ch4");el.innerHTML="";["مُنظّم أدراج","رف رفع للأعلى","إضاءة LED","شفاط"].forEach(n=>{const b=document.createElement("button");b.textContent=n;b.setAttribute("aria-pressed",S.a.has(n));b.onclick=()=>{S.a.has(n)?S.a.delete(n):S.a.add(n);multi();draw()};el.appendChild(b)})}
+function sw(){const el=$("sw1");el.innerHTML="";cols.forEach((c,i)=>{const b=document.createElement("button");b.style.background=c[1];b.title=c[0];b.setAttribute("aria-label",c[0]);b.setAttribute("aria-pressed",S.c===i);b.onclick=()=>{S.c=i;sw();draw()};el.appendChild(b)})}
+let S_txt='';
+function draw(){
+ const n=Math.max(3,Math.round(S.w*1.6)),W=520,mw=W/n,c=cols[S.c][1],t=tops[S.t][1];let s='<rect width="600" height="380" fill="#0F2B4C"/><rect x="0" y="300" width="600" height="80" fill="#0a1a2e"/>';
+ const hnd=(x,y,v)=>S.h==0?`<rect x="${x}" y="${y}" width="3" height="${v?26:30}" rx="1.5" fill="#F5B800"/>`:S.h==1?`<circle cx="${x+1}" cy="${y+10}" r="4" fill="#F5B800"/>`:"";
+ const uh=S.l==2?150:110;
+ for(let i=0;i<n;i++){const x=40+i*mw;
+  s+=`<rect x="${x+2}" y="40" width="${mw-4}" height="${uh}" rx="3" fill="${c}" stroke="rgba(0,0,0,.35)"/>`+hnd(x+mw-14,uh+4,1);
+  s+=`<rect x="${x+2}" y="208" width="${mw-4}" height="92" rx="3" fill="${c}" stroke="rgba(0,0,0,.35)"/>`+hnd(x+mw-14,214,0)}
+ s+=`<rect x="34" y="196" width="${W+12}" height="12" fill="${t}"/>`;
+ if(S.t==0)s+=`<path d="M60 198 l40 6 M200 197 l30 8 M380 198 l50 6" stroke="#b9b4a8" stroke-width="1"/>`;
+ if(S.a.has("إضاءة LED"))s+=`<rect x="44" y="${40+uh+2}" width="${W-8}" height="3" fill="#F5B800" opacity=".9"/>`;
+ if(S.a.has("شفاط"))s+=`<path d="M${40+W/2-50} 40 l20 -22 h60 l20 22z" fill="#9FB3CC"/>`;
+ if(S.a.has("رف رفع للأعلى"))s+=`<rect x="42" y="${uh+44}" width="16" height="3" fill="#F5B800"/>`;
+ if(S.l==1)s+=`<rect x="${40+W/2-110}" y="318" width="220" height="46" rx="4" fill="${c}"/><rect x="${40+W/2-118}" y="308" width="236" height="12" fill="${t}"/>`;
+ $("kv").innerHTML=s;$("wv").textContent=S.w;
+ const L=["خطي","جزيرة","علوي مرتفع"][S.l],H=["مقبض بار","مقبض كُنب","بدون مقبض"][S.h];
+ S_txt=`مطبخ ${S.w} متر – لون ${cols[S.c][0]} – رخامة ${tops[S.t][0]} – ${H} – تقسيم ${L}`+(S.a.size?" – ملحقات: "+[...S.a].join("، "):"");
+ $("sum").innerHTML="<b>اختياراتك:</b> "+S_txt}
+function lab(){sw();chips("ch1",tops.map(x=>x[0]),"t");chips("ch2",["مقبض بار","مقبض كُنب","بدون مقبض"],"h");chips("ch3",["خطي","جزيرة","علوي مرتفع"],"l");multi();draw()}
+function wa(m){window.open("https://wa.me/"+(C.contact?.whatsapp||WA)+"?text="+encodeURIComponent(m),"_blank")}
+function wire(){
+ const mBtn = $('menuToggleBtn');
+ if (mBtn) mBtn.onclick = () => $('mobileMenu').classList.toggle('open');
+ $("wd").oninput=e=>{S.w=+e.target.value;draw()};
+ $("fab").onclick=e=>{e.preventDefault();wa("أهلاً Kynship، عاوز أستفسر")};
+ $("send").onclick=e=>{e.preventDefault();$("ms").value="تصميمي: "+S_txt;$("contact").scrollIntoView()};
+ $("fm").onsubmit=e=>{e.preventDefault();wa(`أهلاً Kynship، أنا ${$("nm").value} (${$("ph2").value})\nالطلب: ${$("ty").value}\n${$("ms").value}`)};
+}
+boot();
+</script>
+</body>
+</html>
