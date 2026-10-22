@@ -1,5 +1,6 @@
 [build]
-  publish = "."
+  command = "node containment-build.js"
+  publish = "containment-public"
 
 [[headers]]
   for = "/*"
@@ -11,3 +12,9 @@
   for = "/content.json"
   [headers.values]
     Cache-Control = "no-cache, no-store, must-revalidate"
+
+[[headers]]
+  for = "/admin.html"
+  [headers.values]
+    Cache-Control = "no-store"
+    X-Robots-Tag = "noindex, nofollow"
