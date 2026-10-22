@@ -4,7 +4,40 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Kynship | كينشب – مطابخ ودواليب</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;600;700&family=Almarai:wght@300;400;700&family=Amiri:wght@400;700&family=Cairo:wght@300;400;600;700;900&family=Changa:wght@400;600;700&family=Inter:wght@300;400;600;700&family=Noto+Kufi+Arabic:wght@300;400;600;700&family=Outfit:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Readex+Pro:wght@300;400;600;700&family=Tajawal:wght@300;400;500;700&display=swap">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap">
+<meta name="description" content="Kynship | كينشب – تصميم وتنفيذ مطابخ ودواليب وألوميتال بجودة عالية وتسليم سريع. صمّم مطبخك بنفسك في استوديو التصميم واطلب عرض سعر على واتساب. ضمان لحد 10 سنين.">
+<meta name="theme-color" content="#0A1E36">
+<link rel="canonical" href="https://kynship-theta.vercel.app/">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ar_AR">
+<meta property="og:site_name" content="Kynship">
+<meta property="og:title" content="Kynship | كينشب – مطابخ ودواليب">
+<meta property="og:description" content="نحوّل أحلامك لواقع بأعلى جودة وأسرع تسليم. مطابخ، دواليب، ألوميتال، وتصاميم 3D – اطلب عرض سعر على واتساب.">
+<meta property="og:url" content="https://kynship-theta.vercel.app/">
+<meta property="og:image" content="https://kynship-theta.vercel.app/images/banner-main.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "LocalBusiness",
+ "name": "Kynship | كينشب",
+ "description": "تصميم وتنفيذ مطابخ ودواليب وخزائن وأعمال ألوميتال وتصاميم 3D.",
+ "url": "https://kynship-theta.vercel.app/",
+ "image": "https://kynship-theta.vercel.app/images/banner-main.jpg",
+ "telephone": "+201010104140",
+ "sameAs": [
+  "https://www.instagram.com/kyn_ship/",
+  "https://www.tiktok.com/@kyn_ship",
+  "https://x.com/kyn_ship",
+  "https://www.threads.com/@kyn_ship",
+  "https://www.facebook.com/profile.php?id=61579391587837",
+  "https://www.pinterest.com/kynship/"
+ ]
+}
+</script>
 <style>
 :root{--bg:#FFFFFF;--soft:#F4F1EA;--ink:#0A1E36;--mute:#5d6b7d;--line:rgba(10,30,54,.14);--navy:#0A1E36;--navy2:#0F2B4C;--card:#12335a;--on:#F4F1E8;--nm:#9FB3CC;--gold:#F5B800;--gd:#8a6700;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0A1E36;--soft:#0F2B4C;--ink:#F4F1E8;--mute:#9FB3CC;--line:rgba(244,241,232,.16)}}
@@ -116,7 +149,10 @@ footer a:hover{color:var(--gold)}
  .story .w,.proj .w,.cust{grid-template-columns:1fr}
  footer .w{grid-template-columns:repeat(2,1fr);gap:24px}
  nav ul{display:none}
+ #navCta{display:none}
  .menu-btn{display:flex}
+ .proj .lead{order:-1}
+ .proj .lead h2,.proj .lead p{text-align:center}
  .hero{padding:90px 0 70px}
  .hero h1{font-size:clamp(32px, 8vw, 56px)}
  .story h2,.proj .lead h2{text-align:center}
@@ -146,6 +182,10 @@ footer a:hover{color:var(--gold)}
  .fab svg{width:24px;height:24px}
 }
 
+/* ظهور تدريجي عند التمرير */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.rv.on{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
 /* شاشات الهواتف الصغيرة جداً (<= 380px) */
 @media(max-width:380px){
  .logo{font-size:18px;letter-spacing:.25em}
@@ -241,7 +281,7 @@ footer a:hover{color:var(--gold)}
   <h2 id="contactTitle">اطلب عرض سعر</h2>
   <form id="fm">
    <input type="text" id="nm" placeholder="الاسم" required aria-label="الاسم">
-   <input type="tel" id="ph2" placeholder="رقم الموبايل" required aria-label="رقم الموبايل">
+   <input type="tel" id="ph2" placeholder="رقم الموبايل" required aria-label="رقم الموبايل" inputmode="tel" pattern="01[0-9]{9}" title="اكتب رقم موبايل مصري صحيح من 11 رقم يبدأ بـ 01">
    <select id="ty" aria-label="نوع الطلب"></select>
    <textarea id="ms" rows="4" placeholder="تفاصيل إضافية (المساحة، المنطقة…)" aria-label="تفاصيل"></textarea>
    <button class="btn d" type="submit">ابعت على واتساب</button>
@@ -380,6 +420,10 @@ async function boot(){
  });
  applyStyles(C.styles);
  lab(); wire();
+ if('IntersectionObserver' in window){
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.12});
+  document.querySelectorAll('section,.strip,.banner,footer .w').forEach(el=>{el.classList.add('rv');io.observe(el)});
+ }
 }
 window.addEventListener('storage', e => { if (e.key === 'kyn_content') boot(); });
 /* ===== design studio (محتفظظن به كما هو) ===== */
