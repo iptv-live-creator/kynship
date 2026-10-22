@@ -837,8 +837,9 @@ body.kyn-edit-mode .kyn-add-card{display:flex}
  <div class="kyn-login-card">
   <div class="kyn-login-logo">KYNSHIP</div>
   <h2>لوحة التعديل المباشر</h2>
-  <p>أدخل كلمة المرور لتفعيل وضع التعديل الفوري على الموقع</p>
+  <p>سجّل دخولك بحساب الأدمن لتفعيل وضع التعديل المباشر</p>
   <form onsubmit="handleLogin(event)">
+   <input type="email" id="adminEmailInput" placeholder="الإيميل" required autocomplete="username" style="direction:ltr;text-align:left">
    <input type="password" id="adminPasswordInput" placeholder="كلمة المرور" required autofocus autocomplete="current-password">
    <button type="submit" class="btn" style="width:100%">دخول لوحة التحكم</button>
    <div id="loginErrorMsg" style="color:#d32f2f;font-size:12px;margin-top:10px;font-weight:700"></div>
@@ -849,6 +850,12 @@ body.kyn-edit-mode .kyn-add-card{display:flex}
 <div id="kynToast"></div>
 
 <!-- ==================== البرمجية والمحرك ==================== -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script>
+const SUPA_URL='__SUPA_URL__';
+const SUPA_ANON='__SUPA_ANON__';
+const supa=window.supabase.createClient(SUPA_URL,SUPA_ANON);
+</script>
 <script>
 let C = {};
 let dirty = false;
@@ -909,27 +916,31 @@ function clearDirty() {
  ind.className = 'kyn-dirty-pill';
 }
 
-/* ===== الأمان وتسجيل الدخول ===== */
-const PASS = 'DJ!16GfZSZEQdKS$RGJL';
+/* ===== الأمان وتسجيل الدخول (Supabase Auth) ===== */
 function isLogged() {
- return sessionStorage.getItem('kyn_admin') === '1';
+ return window.__kynAuthed === true;
 }
 
-function handleLogin(e) {
+async function handleLogin(e) {
  e.preventDefault();
- const p = $('adminPasswordInput').value.trim();
- if (p === PASS) {
-  sessionStorage.setItem('kyn_admin', '1');
+ const email = $('adminEmailInput').value.trim();
+ const pass = $('adminPasswordInput').value;
+ $('loginErrorMsg').textContent = '';
+ try {
+  const { error } = await supa.auth.signInWithPassword({ email, password: pass });
+  if (error) throw error;
+  window.__kynAuthed = true;
   $('kynLoginOverlay').style.display = 'none';
   toast('مرحباً بك! وضع التعديل المباشر مفعل الآن ✏️');
- } else {
-  $('loginErrorMsg').textContent = 'كلمة المرور غير صحيحة، حاول مجدداً';
+ } catch(err) {
+  $('loginErrorMsg').textContent = 'بيانات الدخول غير صحيحة، حاول مجدداً';
   $('adminPasswordInput').value = '';
  }
 }
 
-$('btnLogoutAdmin').onclick = () => {
- sessionStorage.removeItem('kyn_admin');
+$('btnLogoutAdmin').onclick = async () => {
+ try { await supa.auth.signOut(); } catch(e) {}
+ window.__kynAuthed = false;
  location.reload();
 };
 
@@ -1121,18 +1132,11 @@ function uploadCustomFontFile() {
   const ext = file.name.split('.').pop();
   const safeName = fontName.replace(/[^a-zA-Z0-9_-]/g, '_') + '.' + ext;
 
-  fetch('upload.php', {
-   method: 'POST',
-   headers: {
-    'X-Mode': 'font',
-    'X-Img-Name': safeName
-   },
-   body: bytes
-  })
-  .then(r => r.json())
-  .then(data => {
-   const fontUrl = data.url || ('fonts/' + safeName);
-   registerFontInDOM(fontName, fontUrl);
+  supa.storage.from('media').upload('fonts/' + safeName, bytes, { contentType: file.type || 'font/woff2', upsert: true })
+  .then(({ error }) => {
+   if (error) throw error;
+   const { data: pub } = supa.storage.from('media').getPublicUrl('fonts/' + safeName);
+   registerFontInDOM(fontName, pub.publicUrl);
   })
   .catch(() => {
    const blob = new Blob([bytes]);
@@ -1552,16 +1556,12 @@ function handleModalUpload(file) {
   const bytes = new Uint8Array(rd.result);
   const cleanName = currentEditingImgKey.replace(/[.]/g, '_') + '_' + Date.now() + '.jpg';
 
-  fetch('upload.php', {
-   method: 'POST',
-   headers: { 'X-Img-Name': cleanName },
-   body: bytes
-  })
-  .then(r => r.json())
-  .then(data => {
-   if (data.url) {
+  supa.storage.from('media').upload(cleanName, bytes, { contentType: file.type || 'image/jpeg', upsert: true })
+  .then(({ error }) => {
+   if (!error) {
+    const { data: pub } = supa.storage.from('media').getPublicUrl(cleanName);
     $('uploadStatus').textContent = 'تم الرفع بنجاح ✓';
-    applyNewImage(currentEditingImgKey, data.url);
+    applyNewImage(currentEditingImgKey, pub.publicUrl);
     setTimeout(() => closeModal('imageModal'), 600);
    } else {
     fallbackLocalImage(rd.result);
@@ -1942,88 +1942,26 @@ async function saveChanges() {
  btn.textContent = 'جاري الحفظ…';
  toast('جاري حفظ التعديلات…', 3000);
 
- // 1. الحفظ في المتصفح فوراً للمزامنة اللحظية
+ // حفظ محلي فوري للمعاينة على نفس المتصفح
  try {
   localStorage.setItem('kyn_content', JSON.stringify(C));
   window.dispatchEvent(new Event('storage'));
  } catch(e) {}
 
- const isLocal = (location.hostname === 'localhost' || location.hostname === '127.0.0.1');
- const gh = getGitHubConfig();
-
- // 2. إذا كنا على السيرفر المحلي، احفظ على القرص في content.json
- if (isLocal) {
-  try {
-   await fetch('upload.php', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'X-Mode': 'save' },
-    body: JSON.stringify(C)
-   });
-  } catch(e) {}
- }
-
- // 3. إذا تم ضبط GitHub، انشر التعديلات مباشرة إلى مستودع GitHub
- if (gh.repo && gh.token) {
-  btn.textContent = 'جاري النشر لـ GitHub…';
-  toast('جاري إرسال التعديل إلى مستودع GitHub…', 4000);
-  try {
-   const branch = gh.branch || 'main';
-   let sha;
-   try {
-    const shaRes = await fetch('https://api.github.com/repos/' + gh.repo + '/contents/content.json?ref=' + branch, {
-     headers: { Authorization: 'Bearer ' + gh.token, Accept: 'application/vnd.github.v3+json' }
-    });
-    if (shaRes.ok) {
-     const shaData = await shaRes.json();
-     sha = shaData.sha;
-    }
-   } catch(e) {}
-
-   const jsonString = JSON.stringify(C, null, 2);
-   const base64Content = btoa(unescape(encodeURIComponent(jsonString)));
-
-   const putRes = await fetch('https://api.github.com/repos/' + gh.repo + '/contents/content.json', {
-    method: 'PUT',
-    headers: {
-     Authorization: 'Bearer ' + gh.token,
-     Accept: 'application/vnd.github.v3+json',
-     'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-     message: 'Update content via Kynship Live CMS',
-     content: base64Content,
-     sha: sha,
-     branch: branch
-    })
-   });
-
-   if (putRes.ok) {
-    clearDirty();
-    toast('تم الحفظ ونشر التعديل إلى GitHub بنجاح! سيقوم Netlify بتحديث الموقع تلقائياً خلال ثوانٍ معدودة ✓', 5000);
-    return;
-   } else {
-    const errData = await putRes.json();
-    clearDirty();
-    toast('تم الحفظ محلياً — تعذر النشر إلى GitHub: ' + (errData.message || putRes.status), 6000);
-    return;
-   }
-  } catch(err) {
-   clearDirty();
-   toast('تم الحفظ محلياً — خطأ في اتصال GitHub: ' + err.message, 5000);
-   return;
-  }
- }
-
- // في حال لم نكن محلياً ولم يتم إدخال إعدادات GitHub بعد
- if (!isLocal && (!gh.repo || !gh.token)) {
+ // النشر إلى Supabase — يظهر لكل الزوار فوراً
+ btn.textContent = 'جاري النشر…';
+ try {
+  const { error } = await supa.from('site_content').upsert({ id: 1, data: C, updated_at: new Date().toISOString() });
+  if (error) throw error;
   clearDirty();
-  toast('تم الحفظ بالمتصفح! يرجى إدخال إعدادات GitHub لنشر التعديل لكل الزوار على Netlify', 5000);
-  openGitHubModal();
-  return;
+  btn.disabled = false;
+  btn.textContent = '💾 حفظ ونشر التعديلات';
+  toast('تم الحفظ والنشر بنجاح! التعديل ظاهر لكل الزوار الآن ✓', 5000);
+ } catch(err) {
+  btn.disabled = false;
+  btn.textContent = '💾 حفظ ونشر التعديلات';
+  toast('اتحفظ على المتصفح فقط — تعذر النشر: ' + (err.message || err), 6000);
  }
-
- clearDirty();
- toast('تم الحفظ بنجاح! التعديلات تم تطبيقها على الموقع والصفحة الثانية فوراً ✓', 4000);
 }
 
 /* ===== مختبر التصميم التفاعلي ===== */
@@ -2112,6 +2050,13 @@ function initStudio() {
 
 /* ===== تهيئة وتحميل بيانات الموقع بالكامل (Boot) ===== */
 async function boot() {
+ // امسح أي توكن GitHub قديم متخزن من النسخة السابقة
+ try { localStorage.removeItem('kyn_gh_config'); } catch(e) {}
+
+ try {
+  const { data } = await supa.auth.getSession();
+  if (data && data.session) window.__kynAuthed = true;
+ } catch(e) {}
  if (!isLogged()) {
   $('kynLoginOverlay').style.display = 'flex';
  }
@@ -2121,7 +2066,12 @@ async function boot() {
   if (local) {
    C = JSON.parse(local);
   } else {
-   C = await fetch('content.json?v=' + Date.now(), { cache: 'no-store' }).then(r => r.json());
+   try {
+    const { data: row, error } = await supa.from('site_content').select('data').eq('id', 1).single();
+    if (row && row.data) C = row.data; else throw new Error('empty');
+   } catch(e2) {
+    C = await fetch('content.json?v=' + Date.now(), { cache: 'no-store' }).then(r => r.json());
+   }
   }
  } catch(e) {
   try { C = await fetch('content.json', { cache: 'no-store' }).then(r => r.json()); } catch(e2){}
