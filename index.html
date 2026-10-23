@@ -244,7 +244,7 @@ footer a:hover{color:var(--gold)}
 
 <section class="story" id="story">
  <div class="w">
-  <div class="ph" id="storyImg" role="img"></div>
+  <div class="ph" id="storyImg" role="img" aria-label="صورة من أعمال كينشب"></div>
   <div class="lead">
    <h2 id="storyTitle">قصة Kynship</h2>
    <p id="storyText"></p>
@@ -416,7 +416,7 @@ async function boot(){
   const fit = p.fit || 'cover';
   const pos = p.position || 'center';
   const bg = p.bgColor || (fit === 'contain' ? '#0A1E36' : 'transparent');
-  return `<div class="card"><div class="ph" style="background-image:url('${p.img}');background-size:${fit};background-position:${pos};background-color:${bg};background-repeat:no-repeat" role="img" aria-label="${esc(p.alt)}"></div><div class="tx"><h3>${esc(p.title)}</h3><p>${esc(p.caption)}</p></div></div>`;
+  return `<div class="card"><div class="ph" style="background-image:url('${p.img}');background-size:${fit};background-position:${pos};background-color:${bg};background-repeat:no-repeat" role="img" aria-label="${esc(p.alt || p.title || 'صورة من أعمال Kynship')}"></div><div class="tx"><h3>${esc(p.title)}</h3><p>${esc(p.caption)}</p></div></div>`;
  }).join('');
  if(C.lab){ $('labTitle').textContent=C.lab.title; $('labSub').textContent=C.lab.sub; }
  if(C.contact_section){
