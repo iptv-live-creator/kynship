@@ -37,7 +37,17 @@
  "url": "https://kynship-theta.vercel.app/",
  "image": "https://kynship-theta.vercel.app/images/banner-main.jpg",
  "telephone": "+201010104140",
- "areaServed": "EG",
+ "address": {
+  "@type": "PostalAddress",
+  "streetAddress": "HFQX+97X",
+  "addressLocality": "Zagazig 2",
+  "addressRegion": "Al-Sharqia",
+  "postalCode": "7120313",
+  "addressCountry": "EG"
+ },
+ "geo": { "@type": "GeoCoordinates", "latitude": 30.5884924, "longitude": 31.498229 },
+ "hasMap": "https://maps.app.goo.gl/WaKE3jgQB4ULznNb7",
+ "areaServed": ["Zagazig", "Al-Sharqia", "EG"],
  "sameAs": [
   "https://www.instagram.com/kyn_ship/",
   "https://www.tiktok.com/@kyn_ship",
@@ -129,6 +139,7 @@ footer a:hover{color:var(--gold)}
 .social a{width:38px;height:38px;border:1px solid rgba(244,241,232,.25);border-radius:50%;display:grid;place-items:center;padding:0}
 .social a:hover{border-color:var(--gold)}
 .social svg{width:17px;height:17px;fill:currentColor}
+.loc{text-align:center;font-size:13px;color:var(--nm);margin-top:26px}.loc a{color:var(--gold);text-decoration:none}
 .cp{border-top:1px solid rgba(244,241,232,.14);margin-top:34px;padding-top:18px;text-align:center;font-size:13px}
 .fab{position:fixed;bottom:22px;left:22px;z-index:8;width:54px;height:54px;border-radius:50%;background:#25D366;color:#fff;display:grid;place-items:center;box-shadow:0 8px 22px rgba(0,0,0,.28);text-decoration:none}
 .fab svg{width:28px;height:28px;fill:currentColor}
@@ -300,6 +311,7 @@ footer a:hover{color:var(--gold)}
 
 <footer>
  <div class="w" id="footGrid"></div>
+ <p class="loc">📍 الزقازيق 2، محافظة الشرقية · <a href="https://maps.app.goo.gl/WaKE3jgQB4ULznNb7" target="_blank" rel="noopener">موقعنا على خرائط جوجل</a></p>
  <p class="cp" id="cp"></p>
 </footer>
 
