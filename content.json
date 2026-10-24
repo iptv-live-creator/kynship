@@ -1,187 +1,175 @@
 {
+  "banner": {
+    "cta": "أحدث الأعمال",
+    "href": "#proj",
+    "img": "images/cat-aluminium.jpg"
+  },
   "brand": {
+    "bar": "ضمان لحد 10 سنين · استشارة تصميم مجانية",
     "name": "KYNSHIP",
+    "sub": "تفصيل مطابخ ودواليب وألوميتال في مصر كلها. مقرنا في الزقازيق، وبنخدم جميع المحافظات.",
     "tagline_ar": "مطابخ وخزائن من التصميم للتسليم",
-    "tagline_en": "Precision<b>.in Every Piece</b>",
-    "sub": "تفصيل مطابخ ودواليب وألوميتال في الزقازيق ومحافظة الشرقية، بأعلى جودة وأسرع تسليم",
-    "bar": "ضمان لحد 10 سنين · استشارة تصميم مجانية"
+    "tagline_en": "Precision<b>.in Every Piece</b>"
   },
-  "contact": {
-    "whatsapp": "201010104140",
-    "instagram": "https://www.instagram.com/kyn_ship/",
-    "tiktok": "https://www.tiktok.com/@kyn_ship",
-    "x": "https://x.com/kyn_ship",
-    "threads": "https://www.threads.com/@kyn_ship",
-    "facebook": "https://www.facebook.com/profile.php?id=61579391587837",
-    "pinterest": "https://www.pinterest.com/kynship/",
-    "linktree": "https://linktr.ee/kyn.ship"
-  },
-  "nav": [
-    {
-      "label": "الأقسام",
-      "href": "#cats"
-    },
-    {
-      "label": "قصتنا",
-      "href": "#story"
-    },
-    {
-      "label": "أعمالنا",
-      "href": "#proj"
-    },
-    {
-      "label": "استوديو التصميم",
-      "href": "#lab"
-    },
-    {
-      "label": "تواصل",
-      "href": "#contact"
-    }
-  ],
   "cats": [
     {
+      "href": "#contact",
       "id": "cat-kitchen",
-      "label": "مطابخ",
-      "href": "#contact",
-      "img": "images/proj-wood.jpg"
+      "img": "images/cat-kitchen.jpg",
+      "label": "مطابخ"
     },
     {
+      "href": "#contact",
       "id": "cat-aluminium",
-      "label": "ألوميتال",
-      "href": "#contact",
-      "img": "images/cat-aluminium.jpg"
+      "img": "images/cat-aluminium.jpg",
+      "label": "ألوميتال"
     },
     {
-      "id": "cat-3d",
-      "label": "تصاميم 3D",
       "href": "#lab",
-      "img": "images/cat-3d.jpg"
+      "id": "cat-3d",
+      "img": "images/cat-3d.jpg",
+      "label": "تصاميم 3D"
     },
     {
-      "id": "cat-wardrobes",
-      "label": "دواليب وخزائن",
       "href": "#contact",
-      "img": "images/cat-wardrobes.jpg"
+      "id": "cat-wardrobes",
+      "img": "images/cat-wardrobes.jpg",
+      "label": "دواليب وخزائن"
     }
   ],
-  "features": [
-    {
-      "icon": "shield",
-      "title": "ضمان 10 سنين",
-      "text": "ضمان مكتوب على الخامات والتنفيذ مع خدمة ما بعد البيع."
-    },
-    {
-      "icon": "truck",
-      "title": "تسليم سريع",
-      "text": "مواعيد واضحة والتزام بيها من القياس للتركيب."
-    },
-    {
-      "icon": "pen",
-      "title": "استشارة تصميم مجانية",
-      "text": "فريقنا يساعدك تختار التصميم والخامات المناسبة لمساحتك."
-    }
-  ],
-  "story": {
-    "title": "قصة Kynship",
-    "text": "بدأنا من فكرة بسيطة: مطبخك يستاهل دقة في كل قطعة. بنشتغل بالألوميتال والخامات المتينة، وبنصمم وننفذ ونركّب بفريق واحد، عشان النتيجة تطلع زي ما اتخيلتها بالظبط. مقرنا في الزقازيق وبنخدم كل محافظة الشرقية.",
-    "img": "images/cat-wardrobes.jpg",
-    "cta": "اعرف أكتر"
-  },
-  "banner": {
-    "img": "images/cat-aluminium.jpg",
-    "cta": "أحدث الأعمال",
-    "href": "#proj"
-  },
-  "projects_head": "Projects by Kynship",
-  "projects_sub": "كل مشروع بنصممه بتفاصيل دقيقة عشان يطلع مطبخ عملي وجميل ومريح في الاستخدام اليومي – من مشاريعنا في الزقازيق ومحافظة الشرقية.",
-  "projects": [
-    {
-      "img": "images/proj-shorouk.jpg",
-      "alt": "مطبخ عميلتنا في الشروق — فاخر وعملي",
-      "title": "مطبخ الشروق",
-      "caption": "تصميم فاخر وعملي، خامات وإكسسوارات مختارة بعناية."
-    },
-    {
-      "img": "images/proj-wood.jpg",
-      "alt": "مطبخ خشب بسيط وعملي",
-      "title": "مطبخ خشب",
-      "caption": "خشب متصمّم بعناية — بسيط، عملي، وشكله يفتح النفس."
-    }
-  ],
-  "lab": {
-    "title": "استوديو التصميم",
-    "sub": "اختار اللون والخامة والأبعاد والملحقات، والمعاينة بتتغير قدامك فورًا."
+  "contact": {
+    "facebook": "https://www.facebook.com/profile.php?id=61579391587837",
+    "instagram": "https://www.instagram.com/kyn_ship/",
+    "linktree": "https://linktr.ee/kyn.ship",
+    "pinterest": "https://www.pinterest.com/kynship/",
+    "threads": "https://www.threads.com/@kyn_ship",
+    "tiktok": "https://www.tiktok.com/@kyn_ship",
+    "whatsapp": "201010104140",
+    "x": "https://x.com/kyn_ship"
   },
   "contact_section": {
-    "title": "اطلب عرض سعر",
+    "msg_ph": "تفاصيل إضافية (المساحة، المنطقة…)",
     "name_ph": "الاسم",
     "phone_ph": "رقم الموبايل",
+    "submit": "ابعت على واتساب",
+    "title": "اطلب عرض سعر",
     "types": [
       "مطبخ",
       "دولاب",
       "شبابيك وأبواب ألوميتال"
-    ],
-    "msg_ph": "تفاصيل إضافية (المساحة، المنطقة…)",
-    "submit": "ابعت على واتساب"
+    ]
   },
+  "features": [
+    {
+      "icon": "shield",
+      "text": "ضمان مكتوب على الخامات والتنفيذ مع خدمة ما بعد البيع.",
+      "title": "ضمان 10 سنين"
+    },
+    {
+      "icon": "truck",
+      "text": "مواعيد واضحة والتزام بيها من القياس للتركيب.",
+      "title": "تسليم سريع"
+    },
+    {
+      "icon": "pen",
+      "text": "فريقنا يساعدك تختار التصميم والخامات المناسبة لمساحتك.",
+      "title": "استشارة تصميم مجانية"
+    }
+  ],
   "footer": {
     "about": {
-      "title": "عن Kynship",
       "links": [
         {
-          "label": "قصتنا",
-          "href": "#story"
+          "href": "#story",
+          "label": "قصتنا"
         },
         {
-          "label": "أعمالنا",
-          "href": "#proj"
-        },
-        {
-          "label": "وظائف",
-          "href": "#contact"
+          "href": "#proj",
+          "label": "أعمالنا"
         }
-      ]
+      ],
+      "title": "عن Kynship"
     },
+    "copyright": "© 2026 Kynship",
     "services": {
-      "title": "خدماتنا",
       "links": [
         {
-          "label": "مطابخ",
-          "href": "#cats"
+          "href": "#cats",
+          "label": "مطابخ"
         },
         {
-          "label": "دواليب",
-          "href": "#cats"
+          "href": "#cats",
+          "label": "دواليب"
         },
         {
-          "label": "شبابيك وأبواب",
-          "href": "#cats"
+          "href": "#cats",
+          "label": "شبابيك وأبواب"
         },
         {
-          "label": "تصاميم 3D",
-          "href": "#lab"
+          "href": "#lab",
+          "label": "تصاميم 3D"
         }
-      ]
-    },
-    "support": {
-      "title": "خدمة العملاء",
-      "links": [
-        {
-          "label": "تواصل معنا",
-          "href": "#contact"
-        },
-        {
-          "label": "الضمان",
-          "href": "#contact"
-        },
-        {
-          "label": "الأسئلة الشائعة",
-          "href": "#contact"
-        }
-      ]
+      ],
+      "title": "خدماتنا"
     },
     "social_title": "تابعنا",
-    "copyright": "© 2026 Kynship - Updated"
+    "support": {
+      "links": [
+        {
+          "href": "#contact",
+          "label": "تواصل معنا"
+        }
+      ],
+      "title": "خدمة العملاء"
+    }
+  },
+  "lab": {
+    "sub": "اختار اللون والخامة والأبعاد والملحقات، والمعاينة بتتغير قدامك فورًا.",
+    "title": "استوديو التصميم"
+  },
+  "nav": [
+    {
+      "href": "#cats",
+      "label": "الأقسام"
+    },
+    {
+      "href": "#story",
+      "label": "قصتنا"
+    },
+    {
+      "href": "#proj",
+      "label": "أعمالنا"
+    },
+    {
+      "href": "#lab",
+      "label": "استوديو التصميم"
+    },
+    {
+      "href": "#contact",
+      "label": "تواصل"
+    }
+  ],
+  "projects": [
+    {
+      "alt": "مطبخ من أعمال كينشب، لقطة من فيديو العميل",
+      "caption": "لقطة من فيديو منشور على صفحة كينشب، بتوضح توزيع الوحدات وتفاصيل المطبخ.",
+      "img": "images/proj-shorouk.jpg",
+      "title": "مطبخ من أعمال كينشب"
+    },
+    {
+      "alt": "تفاصيل الحوض والسطح في نفس مطبخ كينشب",
+      "caption": "تفاصيل الحوض والسطح من نفس المطبخ المنشور في فيديو كينشب.",
+      "img": "images/proj-wood.jpg",
+      "title": "الحوض والسطح من نفس المطبخ"
+    }
+  ],
+  "projects_head": "مطبخ من أعمال كينشب",
+  "projects_sub": "زاويتان من نفس المطبخ المنشور على صفحة كينشب. مقرنا في الزقازيق وخدمتنا في جميع محافظات مصر.",
+  "story": {
+    "cta": "اعرف أكتر",
+    "img": "images/cat-wardrobes.jpg",
+    "text": "بدأنا من فكرة بسيطة: مطبخك يستاهل دقة في كل قطعة. بنصمم وننفذ مطابخ ودواليب وأعمال ألوميتال على المقاس. مقرنا في الزقازيق، وبنخدم جميع محافظات مصر.",
+    "title": "قصة Kynship"
   },
   "styles": {}
 }
