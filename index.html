@@ -198,10 +198,15 @@ footer a:hover{color:var(--gold)}
  footer .w{grid-template-columns:1fr;gap:22px;text-align:center}
  .social{justify-content:center}
  section{padding:54px 0}
+ .fq{grid-template-columns:1fr;gap:14px}
  .fab{bottom:16px;left:16px;width:48px;height:48px}
  .fab svg{width:24px;height:24px}
 }
 
+.fq{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.fi{background:var(--soft);border:1px solid var(--line);border-radius:4px;padding:18px 20px}
+.fi h3{font-size:16px;color:var(--gold);margin-bottom:6px}
+.fi p{color:var(--mute);font-size:14px}
 /* ظهور تدريجي عند التمرير */
 .rv{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
 .rv.on{opacity:1;transform:none}
@@ -214,6 +219,62 @@ footer a:hover{color:var(--gold)}
  .cats i{aspect-ratio:3/4}
 }
 </style>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "بتقدموا إيه في كينشب؟",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "تفصيل وتنفيذ مطابخ، دواليب وخزائن ملابس، أعمال ألوميتال (شبابيك وأبواب)، وتصاميم 3D قبل التنفيذ. كل حاجة بتتعمل على مقاس مكانك."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "بتشتغلوا في أنهي مناطق؟",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "مقرنا في الزقازيق 2، محافظة الشرقية، وبنخدم الزقازيق وكل أنحاء محافظة الشرقية والمناطق القريبة منها."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "إزاي أطلب عرض سعر لمطبخ أو دولاب؟",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "ابعتلنا على واتساب من زرار «اطلب عرض سعر»، واكتبلنا نوع الشغل والمقاسات أو صورة المكان، وهنرجعلك بالتفاصيل والسعر."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "فيه ضمان على الشغل؟",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "أيوه، ضمان مكتوب بيوصل لـ10 سنين على الخامات والتنفيذ، ومعاه خدمة ما بعد البيع."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "ينفع أصمم مطبخي بنفسي؟",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "أيوه، جرّب استوديو التصميم على الموقع: اختار اللون والخامة والأبعاد والملحقات، والمعاينة بتتغير قدامك فورًا."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "مدة تنفيذ المطبخ قد إيه؟",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "بنحدد ميعاد واضح من أول المعاينة، وبنلتزم بيه من القياس لحد التركيب النهائي."
+   }
+  }
+ ]
+}
+</script>
 </head>
 <body>
 <div class="bar" data-k="brand.bar">ضمان لحد 10 سنين · استشارة تصميم مجانية</div>
@@ -234,7 +295,7 @@ footer a:hover{color:var(--gold)}
 <header class="hero" id="top">
  <div class="w">
   <h1 data-k="brand.tagline_en">Precision<b>in Every Piece.</b></h1>
-  <p data-k="brand.sub">نحوّل أحلامك لواقع بأعلى جودة وأسرع تسليم</p>
+  <p data-k="brand.sub">تفصيل مطابخ ودواليب وألوميتال في الزقازيق ومحافظة الشرقية، بأعلى جودة وأسرع تسليم</p>
   <div class="cta">
    <a class="btn" href="#lab">صمّم مطبخك</a>
    <a class="btn o" href="#proj">شوف أعمالنا</a>
@@ -292,6 +353,20 @@ footer a:hover{color:var(--gold)}
     <p class="sum" id="sum"></p>
     <a class="btn" id="send" href="#contact">ابعت التصميم لفريقنا</a>
    </div>
+  </div>
+ </div>
+</section>
+
+<section class="faq" id="faq">
+ <div class="w">
+  <h2>أسئلة شائعة عن مطابخ ودواليب كينشب في الزقازيق</h2>
+  <div class="fq">
+   <div class="fi"><h3>بتقدموا إيه في كينشب؟</h3><p>تفصيل وتنفيذ مطابخ، دواليب وخزائن ملابس، أعمال ألوميتال (شبابيك وأبواب)، وتصاميم 3D قبل التنفيذ. كل حاجة بتتعمل على مقاس مكانك.</p></div>
+   <div class="fi"><h3>بتشتغلوا في أنهي مناطق؟</h3><p>مقرنا في الزقازيق 2، محافظة الشرقية، وبنخدم الزقازيق وكل أنحاء محافظة الشرقية والمناطق القريبة منها.</p></div>
+   <div class="fi"><h3>إزاي أطلب عرض سعر لمطبخ أو دولاب؟</h3><p>ابعتلنا على واتساب من زرار «اطلب عرض سعر»، واكتبلنا نوع الشغل والمقاسات أو صورة المكان، وهنرجعلك بالتفاصيل والسعر.</p></div>
+   <div class="fi"><h3>فيه ضمان على الشغل؟</h3><p>أيوه، ضمان مكتوب بيوصل لـ10 سنين على الخامات والتنفيذ، ومعاه خدمة ما بعد البيع.</p></div>
+   <div class="fi"><h3>ينفع أصمم مطبخي بنفسي؟</h3><p>أيوه، جرّب استوديو التصميم على الموقع: اختار اللون والخامة والأبعاد والملحقات، والمعاينة بتتغير قدامك فورًا.</p></div>
+   <div class="fi"><h3>مدة تنفيذ المطبخ قد إيه؟</h3><p>بنحدد ميعاد واضح من أول المعاينة، وبنلتزم بيه من القياس لحد التركيب النهائي.</p></div>
   </div>
  </div>
 </section>
