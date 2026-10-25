@@ -36,6 +36,10 @@ h2{font-size:clamp(24px,3.4vw,34px);font-weight:600;text-align:center;margin-bot
 .cats .cat-item{text-decoration:none;text-align:center;position:relative;display:block}
 .cats i{display:block;aspect-ratio:3/4;margin-bottom:10px;border-radius:4px;background-size:cover;background-position:center;transition:transform .25s;position:relative;overflow:hidden}
 .cats .cat-item:hover i{transform:translateY(-4px)}
+.cats .cat-service i{display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(145deg,#12335a,#081628);border:1px solid rgba(245,184,0,.28);font-style:normal;padding:20px;text-align:center}
+.cats .cat-service strong{color:var(--gold);font-size:25px}
+.cats .cat-service small{font-size:14px;color:var(--mute);margin-top:12px}
+.cats .cat-service .kyn-img-overlay-btn{margin-top:14px}
 .strip{background:var(--soft);padding:54px 0;position:relative}
 .strip .w{display:grid;grid-template-columns:repeat(3,1fr);gap:34px}
 .strip>div{display:flex;gap:16px;align-items:flex-start;position:relative}
@@ -1662,23 +1666,40 @@ function renderImages() {
 
 /* ===== الأقسام ===== */
 function renderCats() {
+ // المعاينة تطابق العرض العام: أقسام الخدمات بصور قديمة تظهر كبطاقات نصية، وصورة المطابخ
+ // proj-wood تُعرض cat-kitchen — دون تغيير قيم المصدر القابلة للتعديل (c.img يبقى كما هو)
  const cats = C.cats || [];
  const html = cats.map((c, i) => {
-  const fit = c.fit || 'cover';
-  const pos = c.position || 'center';
-  const bg = c.bgColor || (fit === 'contain' ? '#0A1E36' : 'transparent');
-  return `
-  <div class="cat-item has-img-edit" id="cat_item_${i}">
+  const ctrls = `
    <div class="kyn-item-ctrls">
     <button class="kyn-ctrl-btn kyn-ctrl-del" title="حذف القسم" onclick="deleteCat(${i})">&times;</button>
     <button class="kyn-ctrl-btn kyn-ctrl-mv" title="نقل لليمين" onclick="moveCat(${i}, -1)">→</button>
     <button class="kyn-ctrl-btn kyn-ctrl-mv" title="نقل لليسار" onclick="moveCat(${i}, 1)">←</button>
-   </div>
-   <i style="background-image:url('${c.img}');background-size:${fit};background-position:${pos};background-color:${bg};background-repeat:no-repeat">
+   </div>`;
+  const imgBtn = `
     <button type="button" class="kyn-img-overlay-btn" onclick="openImagePicker('cats.${i}.img')">
      <span>📷 تغيير</span>
      <span class="kyn-size-tag">600×800 px</span>
-    </button>
+    </button>`;
+  const legacyServicePhoto = ['cat-aluminium','cat-3d','cat-wardrobes'].includes(c.id) && /^images\/(cat-aluminium|cat-3d|cat-wardrobes)\.jpg$/.test(c.img);
+  if (legacyServicePhoto) {
+   return `
+  <div class="cat-item cat-service has-img-edit" id="cat_item_${i}">
+   ${ctrls}
+   <i><strong>${esc(c.label)}</strong><small>${c.id==='cat-3d'?'من الفكرة للمقاس':'تفصيل على المقاس'}</small>${imgBtn}</i>
+   <span data-k="cats.${i}.label" contenteditable="true">${esc(c.label)}</span>
+  </div>
+ `;
+  }
+  const fit = c.fit || 'cover';
+  const pos = c.position || 'center';
+  const bg = c.bgColor || (fit === 'contain' ? '#0A1E36' : 'transparent');
+  const categoryPhoto = c.id==='cat-kitchen' && c.img==='images/proj-wood.jpg' ? 'images/cat-kitchen.jpg' : c.img;
+  return `
+  <div class="cat-item has-img-edit" id="cat_item_${i}">
+   ${ctrls}
+   <i style="background-image:url('${categoryPhoto}');background-size:${fit};background-position:${pos};background-color:${bg};background-repeat:no-repeat">
+    ${imgBtn}
    </i>
    <span data-k="cats.${i}.label" contenteditable="true">${esc(c.label)}</span>
   </div>
