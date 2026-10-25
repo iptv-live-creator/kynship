@@ -154,6 +154,20 @@ footer a:hover{color:var(--gold)}
  .cats i{aspect-ratio:3/4}
 }
 
+/* الأسئلة الشائعة */
+.fq{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:640px){.fq{grid-template-columns:1fr;gap:14px}}
+.fi{background:var(--soft);border:1px solid var(--line);border-radius:4px;padding:18px 20px}
+.fi h3{font-size:16px;color:var(--gold);margin-bottom:6px}
+.fi p{color:var(--mute);font-size:14px}
+body.kyn-edit-mode .fi:hover .kyn-item-ctrls{display:flex}
+@media(hover:none){
+ body.kyn-edit-mode .kyn-item-ctrls{display:flex}
+ body.kyn-edit-mode .cat-item .kyn-img-overlay-btn,
+ body.kyn-edit-mode .card .kyn-img-overlay-btn,
+ body.kyn-edit-mode .strip-item .kyn-img-overlay-btn{display:flex !important}
+}
+
 /* ==================== طبقة التحكم والتعديل والتنسيقات والخطوط ==================== */
 #kynAdminBar{
  position:fixed;top:0;left:0;right:0;height:var(--kynbar-h);z-index:99999;
@@ -396,7 +410,9 @@ body.kyn-edit-mode .kyn-add-card{display:flex}
   padding-bottom:2px;-webkit-overflow-scrolling:touch;scrollbar-width:none;
  }
  .kyn-bar-actions::-webkit-scrollbar{display:none}
- .kyn-bar-btn{flex:0 0 auto;padding:6px 12px;font-size:11px;white-space:nowrap;border-radius:16px}
+ .kyn-bar-btn{flex:0 0 auto;padding:9px 14px;font-size:12px;white-space:nowrap;border-radius:17px;min-height:36px}
+ .kyn-bar-actions #btnSaveAdmin{order:-1}
+ .kyn-bar-actions .save-btn{box-shadow:0 0 0 2px rgba(245,184,0,.35)}
 
  /* المودالات تفتح كشاشة كاملة على الموبايل - لا قصّ ولا تجاوز */
  .kyn-modal{padding:0}
@@ -582,6 +598,15 @@ body.kyn-edit-mode .kyn-add-card{display:flex}
     <a class="btn" id="send" href="#contact">ابعت التصميم لفريقنا</a>
    </div>
   </div>
+ </div>
+</section>
+
+<!-- 9.5 قسم الأسئلة الشائعة -->
+<section class="faq" id="faq">
+ <button type="button" class="kyn-sec-styler-btn" onclick="openSecStyler('faq')">🎨 خلفية الأسئلة</button>
+ <div class="w">
+  <h2 id="faqTitle" data-k="faq_title" contenteditable="true">أسئلة شائعة عن مطابخ ودواليب كينشب في مصر</h2>
+  <div class="fq" id="faqGrid"></div>
  </div>
 </section>
 
@@ -1761,6 +1786,50 @@ function addNewFeat() {
  renderFeatures();
 }
 
+/* ===== الأسئلة الشائعة ===== */
+const DEFAULT_FAQS = [
+ {q:'بتقدموا إيه في كينشب؟', a:'تفصيل وتنفيذ مطابخ، دواليب وخزائن ملابس، أعمال ألوميتال (شبابيك وأبواب)، وتصاميم 3D قبل التنفيذ. كل حاجة بتتعمل على مقاس مكانك.'},
+ {q:'بتشتغلوا في أنهي مناطق؟', a:'مقرنا في الزقازيق 2، محافظة الشرقية، وبنخدم جميع محافظات مصر. تواصل معانا لتأكيد تفاصيل المعاينة والتوصيل والتركيب في منطقتك.'},
+ {q:'إزاي أطلب عرض سعر لمطبخ أو دولاب؟', a:'ابعتلنا على واتساب من زرار «اطلب عرض سعر»، واكتبلنا نوع الشغل والمقاسات أو صورة المكان، وهنرجعلك بالتفاصيل والسعر.'},
+ {q:'فيه ضمان على الشغل؟', a:'أيوه، عندنا ضمان بيوصل لـ10 سنين، ومعاه خدمة ما بعد البيع.'},
+ {q:'ينفع أصمم مطبخي بنفسي؟', a:'أيوه، جرّب استوديو التصميم على الموقع: اختار اللون والخامة والأبعاد والملحقات، والمعاينة بتتغير قدامك فورًا.'},
+ {q:'مدة تنفيذ المطبخ قد إيه؟', a:'بنحدد ميعاد واضح من أول المعاينة، وبنلتزم بيه من القياس لحد التركيب النهائي.'}
+];
+
+function renderFaqs() {
+ const items = C.faqs || [];
+ const html = items.map((f, i) => `
+  <div class="fi" style="position:relative">
+   <div class="kyn-item-ctrls">
+    <button class="kyn-ctrl-btn kyn-ctrl-del" title="حذف" onclick="deleteFaq(${i})">&times;</button>
+   </div>
+   <h3 data-k="faqs.${i}.q" contenteditable="true">${esc(f.q)}</h3>
+   <p data-k="faqs.${i}.a" contenteditable="true">${esc(f.a)}</p>
+  </div>
+ `).join('') + `
+  <div class="kyn-add-card" style="min-height:90px" onclick="addNewFaq()">
+   <span class="plus" style="font-size:20px">+</span>
+   <span>إضافة سؤال</span>
+  </div>
+ `;
+ $('faqGrid').innerHTML = html;
+ bindInlineTextEditing();
+}
+
+function deleteFaq(i) {
+ if (confirm('هل تريد حذف هذا السؤال؟')) {
+  C.faqs.splice(i, 1);
+  markDirty();
+  renderFaqs();
+ }
+}
+
+function addNewFaq() {
+ (C.faqs = C.faqs || []).push({ q: 'سؤال جديد', a: 'اكتب الإجابة هنا' });
+ markDirty();
+ renderFaqs();
+}
+
 /* ===== المشاريع ===== */
 function renderProjects() {
  const projects = C.projects || [];
@@ -2088,6 +2157,11 @@ async function boot() {
 
  // 6. المميزات
  renderFeatures();
+
+ // 6.5 الأسئلة الشائعة — بذر افتراضي عند أول استخدام، لا يُحفظ إلا مع زر الحفظ
+ if (!Array.isArray(C.faqs) || !C.faqs.length) C.faqs = JSON.parse(JSON.stringify(DEFAULT_FAQS));
+ if (!C.faq_title) C.faq_title = 'أسئلة شائعة عن مطابخ ودواليب كينشب في مصر';
+ renderFaqs();
 
  // 7. الفوتر
  renderFooter();
