@@ -4,3 +4,6 @@ Thumbs.db
 node_modules/
 .system_generated/
 scratch/
+
+# local pre-replacement backup snapshot, kept on disk only
+containment-public/
