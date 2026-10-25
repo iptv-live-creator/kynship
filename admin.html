@@ -1968,29 +1968,29 @@ $('btnSaveAdmin').onclick = saveChanges;
 async function saveChanges() {
  const btn = $('btnSaveAdmin');
  btn.disabled = true;
- btn.textContent = 'جاري الحفظ…';
- toast('جاري حفظ التعديلات…', 3000);
-
- // حفظ محلي فوري للمعاينة على نفس المتصفح
- try {
-  localStorage.setItem('kyn_content', JSON.stringify(C));
-  localStorage.setItem('kyn_content_savedAt', new Date().toISOString());
-  window.dispatchEvent(new Event('storage'));
- } catch(e) {}
-
- // النشر إلى Supabase — يظهر لكل الزوار فوراً
  btn.textContent = 'جاري النشر…';
+ toast('جاري نشر التعديلات…', 3000);
+
+ // النشر إلى السيرفر أولاً — لا يُكتب أي كاش للصفحة العامة إلا بعد تأكيد النشر
  try {
   const { error } = await supa.from('site_content').upsert({ id: 1, data: C, updated_at: new Date().toISOString() });
   if (error) throw error;
+  try {
+   localStorage.setItem('kyn_admin_cache', JSON.stringify(C));
+   localStorage.setItem('kyn_content_pub', JSON.stringify(C));
+   localStorage.removeItem('kyn_admin_draft');
+   window.dispatchEvent(new Event('storage'));
+  } catch(e) {}
   clearDirty();
   btn.disabled = false;
   btn.textContent = '💾 حفظ ونشر التعديلات';
   toast('تم الحفظ والنشر بنجاح! التعديل ظاهر لكل الزوار الآن ✓', 5000);
  } catch(err) {
+  // تعذر النشر: التعديلات تُحفظ كمسودة جهاز فقط، ولا تظهر للزوار
+  try { localStorage.setItem('kyn_admin_draft', JSON.stringify(C)); } catch(e) {}
   btn.disabled = false;
   btn.textContent = '💾 حفظ ونشر التعديلات';
-  toast('اتحفظ على المتصفح فقط — تعذر النشر: ' + (err.message || err), 6000);
+  toast('تعذر النشر — التعديلات اتحفظت كمسودة على الجهاز فقط ولن تظهر للزوار: ' + (err.message || err), 7000);
  }
 }
 
@@ -2091,41 +2091,52 @@ async function boot() {
   $('kynLoginOverlay').style.display = 'flex';
  }
 
+ let pendingDraft = null, offlineBoot = false;
  try {
-  // نسخة الجهاز المحلية مقابل نسخة السيرفر: الأحدث يكسب، والمهمَلة تُحفظ كنسخة احتياطية ولا تُمسح
-  let local = null, localAt = null;
+  // السيرفر هو مصدر الحقيقة المنشور. أي نسخة على الجهاز تختلف عنه تُعامل كمسودة
+  // غير منشورة تُسترجع فقط بطلب صريح من المستخدم — لا تُنشر ولا تُستبدل تلقائياً.
+  let serverData = null;
   try {
-   const raw = localStorage.getItem('kyn_content');
-   if (raw) { local = JSON.parse(raw); localAt = localStorage.getItem('kyn_content_savedAt'); }
-  } catch(e0) {}
-  let serverData = null, serverAt = null;
-  try {
-   const { data: row, error } = await supa.from('site_content').select('data,updated_at').eq('id', 1).single();
-   if (row && row.data) { serverData = row.data; serverAt = row.updated_at || null; }
+   const { data: row, error } = await supa.from('site_content').select('data').eq('id', 1).single();
+   if (row && row.data) serverData = row.data;
   } catch(e2) {}
-  if (local && serverData) {
-   const localNewer = localAt && (!serverAt || new Date(localAt) >= new Date(serverAt));
-   if (localNewer) {
-    C = local;
-   } else {
-    try { localStorage.setItem('kyn_content_superseded', JSON.stringify(local)); } catch(e3) {}
-    C = serverData;
-    try {
-     localStorage.setItem('kyn_content', JSON.stringify(C));
-     if (serverAt) localStorage.setItem('kyn_content_savedAt', serverAt);
-    } catch(e3) {}
-   }
-  } else if (local) {
-   C = local;
-  } else if (serverData) {
+  let draft = null;
+  try { const rawD = localStorage.getItem('kyn_admin_draft'); if (rawD) draft = JSON.parse(rawD); } catch(e3) {}
+  // ترحيل من النظام القديم: نسخة kyn_content قد تحمل شغلاً غير منشور — تُعرض كمسودة قابلة للاسترجاع ولا تُمسح
+  let legacy = null;
+  try { const rawL = localStorage.getItem('kyn_content'); if (rawL) legacy = JSON.parse(rawL); } catch(e4) {}
+
+  if (serverData) {
    C = serverData;
+   try { localStorage.setItem('kyn_admin_cache', JSON.stringify(serverData)); } catch(e5) {}
+   const sameAsServer = v => { try { return JSON.stringify(v) === JSON.stringify(serverData); } catch(e) { return false; } };
+   if (draft && !sameAsServer(draft)) pendingDraft = draft;
+   else if (legacy && !sameAsServer(legacy)) pendingDraft = legacy;
   } else {
-   C = await fetch('content.json?v=' + Date.now(), { cache: 'no-store' }).then(r => r.json());
+   offlineBoot = true;
+   if (draft) { C = draft; pendingDraft = null; }
+   else {
+    let cache = null;
+    try { const rawC = localStorage.getItem('kyn_admin_cache'); if (rawC) cache = JSON.parse(rawC); } catch(e6) {}
+    C = cache || legacy || await fetch('content.json?v=' + Date.now(), { cache: 'no-store' }).then(r => r.json());
+   }
   }
+  window.__kynPendingDraft = pendingDraft;
+  window.__kynOfflineBoot = offlineBoot;
  } catch(e) {
   try { C = await fetch('content.json', { cache: 'no-store' }).then(r => r.json()); } catch(e2){}
  }
 
+ renderEverything();
+
+ // مسودة غير منشورة على الجهاز؟ تُعرض كاختيار صريح — لا تُنشر ولا تُستبدل تلقائياً
+ if (window.__kynOfflineBoot) {
+  toast('لا يوجد اتصال بالسيرفر — المعروض آخر نسخة متاحة على الجهاز، والنشر غير متاح حالياً', 7000);
+ }
+ if (window.__kynPendingDraft) showDraftBanner(window.__kynPendingDraft);
+}
+
+function renderEverything() {
  document.title = 'Kynship | لوحة التعديل المباشر';
 
  // 1. تحميل الخطوط المخصصة
@@ -2199,6 +2210,37 @@ async function boot() {
 
  // 11. تفعيل التعديل المباشر
  bindInlineTextEditing();
+}
+
+function showDraftBanner(draft) {
+ if ($('kynDraftBanner')) return;
+ const bar = document.createElement('div');
+ bar.id = 'kynDraftBanner';
+ bar.style.cssText = 'position:fixed;bottom:18px;left:50%;transform:translateX(-50%);z-index:99999;background:#0F2B4C;color:#F4F1E8;border:1px solid #F5B800;border-radius:10px;padding:12px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;max-width:92vw;box-shadow:0 10px 30px rgba(0,0,0,.45);font:400 14px Cairo,sans-serif';
+ bar.innerHTML = '<span>فيه مسودة تعديلات غير منشورة محفوظة على هذا الجهاز. المعروض حالياً هو المنشور من السيرفر.</span>';
+ const mk = (txt, bg, fg) => { const b = document.createElement('button'); b.type='button'; b.textContent = txt; b.style.cssText = `background:${bg};color:${fg};border:0;border-radius:6px;padding:8px 14px;font:600 13px Cairo,sans-serif;cursor:pointer`; return b; };
+ const bRestore = mk('استرجاع المسودة', '#F5B800', '#0A1E36');
+ const bDismiss = mk('تجاهل', 'transparent', '#F4F1E8');
+ bDismiss.style.border = '1px solid rgba(244,241,232,.4)';
+ bRestore.onclick = () => {
+  C = JSON.parse(JSON.stringify(draft));
+  try { localStorage.removeItem('kyn_admin_draft'); } catch(e) {}
+  renderEverything();
+  markDirty();
+  bar.remove();
+  toast('اترجعت المسودة في المحرر — اضغط «حفظ ونشر» لو عايز تنشرها', 6000);
+ };
+ bDismiss.onclick = () => {
+  try {
+   localStorage.setItem('kyn_admin_draft_archived', JSON.stringify(draft));
+   localStorage.removeItem('kyn_admin_draft');
+  } catch(e) {}
+  bar.remove();
+  toast('المسودة اتجاهلت ومحفوظة مؤرشفة على الجهاز — المحتوى المنشور لم يتغير', 5000);
+ };
+ bar.appendChild(bRestore);
+ bar.appendChild(bDismiss);
+ document.body.appendChild(bar);
 }
 
 boot();

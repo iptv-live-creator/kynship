@@ -447,37 +447,25 @@ const SUPA_URL='https://ywvcvulnxajrqvlhnwnq.supabase.co',SUPA_ANON='eyJhbGciOiJ
 async function fetchLiveContent(){
  try{
   const ctl=new AbortController();const to=setTimeout(()=>ctl.abort(),3000);
-  const r=await fetch(SUPA_URL+'/rest/v1/site_content?id=eq.1&select=data,updated_at',{headers:{apikey:SUPA_ANON,Authorization:'Bearer '+SUPA_ANON},signal:ctl.signal,cache:'no-store'});
+  const r=await fetch(SUPA_URL+'/rest/v1/site_content?id=eq.1&select=data',{headers:{apikey:SUPA_ANON,Authorization:'Bearer '+SUPA_ANON},signal:ctl.signal,cache:'no-store'});
   clearTimeout(to);
-  if(r.ok){const rows=await r.json();if(rows&&rows[0]&&rows[0].data&&rows[0].data.nav)return rows[0];}
+  if(r.ok){const rows=await r.json();if(rows&&rows[0]&&rows[0].data&&rows[0].data.nav)return rows[0].data;}
  }catch(e){}
  return null;
 }
 
 async function boot(){
+ // الصفحة العامة تعرض المحتوى المنشور من السيرفر فقط. الكاش المحلي (kyn_content_pub)
+ // لا يُكتب إلا من استجابة سيرفر مؤكدة، ويُستخدم فقط كنسخة احتياطية عند تعذر الوصول للسيرفر.
  try {
-  let local = null, localAt = null;
-  try {
-   const raw = localStorage.getItem('kyn_content');
-   if (raw) { local = JSON.parse(raw); localAt = localStorage.getItem('kyn_content_savedAt'); }
-  } catch(e0) {}
-  const row = (await fetchLiveContent()) || null;
-  const serverData = row && row.data, serverAt = row && row.updated_at;
-  if (local && serverData) {
-   const localNewer = localAt && (!serverAt || new Date(localAt) >= new Date(serverAt));
-   if (localNewer) {
-    C = local;
-   } else {
-    C = serverData;
-    try {
-     localStorage.setItem('kyn_content', JSON.stringify(C));
-     if (serverAt) localStorage.setItem('kyn_content_savedAt', serverAt);
-    } catch(e3) {}
-   }
-  } else if (local && !serverData) {
-   C = local;
+  const serverData = await fetchLiveContent();
+  if (serverData) {
+   C = serverData;
+   try { localStorage.setItem('kyn_content_pub', JSON.stringify(C)); } catch(e0) {}
   } else {
-   C = serverData || await fetch('content.json?v=' + Date.now(), {cache:'no-store'}).then(r=>r.json());
+   let pub = null;
+   try { const raw = localStorage.getItem('kyn_content_pub'); if (raw) pub = JSON.parse(raw); } catch(e1) {}
+   C = pub || await fetch('content.json?v=' + Date.now(), {cache:'no-store'}).then(r=>r.json());
   }
  } catch(e) {
   try { C = await fetch('content.json', {cache:'no-store'}).then(r=>r.json()); } catch(e2){}
@@ -573,7 +561,7 @@ async function boot(){
   document.querySelectorAll('section,.strip,.banner,footer .w').forEach(el=>{el.classList.add('rv');io.observe(el)});
  }
 }
-window.addEventListener('storage', e => { if (e.key === 'kyn_content') boot(); });
+window.addEventListener('storage', e => { if (e.key === 'kyn_content_pub') boot(); });
 /* ===== design studio (محتفظظن به كما هو) ===== */
 const WA=C.contact?.whatsapp||'201010104140';
 const cols=[["كحلي","#1F3A5F"],["أخضر زيتي","#1F4A44"],["بيج","#D8CDB8"],["أبيض","#EEEAE2"],["رمادي","#6B6F76"],["خشب","#8A5A33"]];
