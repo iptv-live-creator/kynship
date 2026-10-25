@@ -1979,6 +1979,7 @@ async function saveChanges() {
    localStorage.setItem('kyn_admin_cache', JSON.stringify(C));
    localStorage.setItem('kyn_content_pub', JSON.stringify(C));
    localStorage.removeItem('kyn_admin_draft');
+   neutralizeLegacyKey();
    window.dispatchEvent(new Event('storage'));
   } catch(e) {}
   clearDirty();
@@ -2212,6 +2213,17 @@ function renderEverything() {
  bindInlineTextEditing();
 }
 
+// مفتاح kyn_content القديم لم يعد يُقرأ — يُحفظ مؤرشفاً (لا يُمسح) حتى لا يظل يُعتبر مسودة
+function neutralizeLegacyKey() {
+ try {
+  const l = localStorage.getItem('kyn_content');
+  if (l !== null) {
+   if (localStorage.getItem('kyn_content_legacy_archived') === null) localStorage.setItem('kyn_content_legacy_archived', l);
+   localStorage.removeItem('kyn_content');
+  }
+ } catch(e) {}
+}
+
 function showDraftBanner(draft) {
  if ($('kynDraftBanner')) return;
  const bar = document.createElement('div');
@@ -2234,6 +2246,7 @@ function showDraftBanner(draft) {
   try {
    localStorage.setItem('kyn_admin_draft_archived', JSON.stringify(draft));
    localStorage.removeItem('kyn_admin_draft');
+   neutralizeLegacyKey();
   } catch(e) {}
   bar.remove();
   toast('المسودة اتجاهلت ومحفوظة مؤرشفة على الجهاز — المحتوى المنشور لم يتغير', 5000);
