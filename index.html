@@ -447,20 +447,37 @@ const SUPA_URL='https://ywvcvulnxajrqvlhnwnq.supabase.co',SUPA_ANON='eyJhbGciOiJ
 async function fetchLiveContent(){
  try{
   const ctl=new AbortController();const to=setTimeout(()=>ctl.abort(),3000);
-  const r=await fetch(SUPA_URL+'/rest/v1/site_content?id=eq.1&select=data',{headers:{apikey:SUPA_ANON,Authorization:'Bearer '+SUPA_ANON},signal:ctl.signal,cache:'no-store'});
+  const r=await fetch(SUPA_URL+'/rest/v1/site_content?id=eq.1&select=data,updated_at',{headers:{apikey:SUPA_ANON,Authorization:'Bearer '+SUPA_ANON},signal:ctl.signal,cache:'no-store'});
   clearTimeout(to);
-  if(r.ok){const rows=await r.json();if(rows&&rows[0]&&rows[0].data&&rows[0].data.nav)return rows[0].data;}
+  if(r.ok){const rows=await r.json();if(rows&&rows[0]&&rows[0].data&&rows[0].data.nav)return rows[0];}
  }catch(e){}
  return null;
 }
 
 async function boot(){
  try {
-  const local = localStorage.getItem('kyn_content');
-  if(local){
-   C = JSON.parse(local);
+  let local = null, localAt = null;
+  try {
+   const raw = localStorage.getItem('kyn_content');
+   if (raw) { local = JSON.parse(raw); localAt = localStorage.getItem('kyn_content_savedAt'); }
+  } catch(e0) {}
+  const row = (await fetchLiveContent()) || null;
+  const serverData = row && row.data, serverAt = row && row.updated_at;
+  if (local && serverData) {
+   const localNewer = localAt && (!serverAt || new Date(localAt) >= new Date(serverAt));
+   if (localNewer) {
+    C = local;
+   } else {
+    C = serverData;
+    try {
+     localStorage.setItem('kyn_content', JSON.stringify(C));
+     if (serverAt) localStorage.setItem('kyn_content_savedAt', serverAt);
+    } catch(e3) {}
+   }
+  } else if (local && !serverData) {
+   C = local;
   } else {
-   C = (await fetchLiveContent()) || await fetch('content.json?v=' + Date.now(), {cache:'no-store'}).then(r=>r.json());
+   C = serverData || await fetch('content.json?v=' + Date.now(), {cache:'no-store'}).then(r=>r.json());
   }
  } catch(e) {
   try { C = await fetch('content.json', {cache:'no-store'}).then(r=>r.json()); } catch(e2){}

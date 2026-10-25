@@ -1974,6 +1974,7 @@ async function saveChanges() {
  // حفظ محلي فوري للمعاينة على نفس المتصفح
  try {
   localStorage.setItem('kyn_content', JSON.stringify(C));
+  localStorage.setItem('kyn_content_savedAt', new Date().toISOString());
   window.dispatchEvent(new Event('storage'));
  } catch(e) {}
 
@@ -2091,16 +2092,35 @@ async function boot() {
  }
 
  try {
-  const local = localStorage.getItem('kyn_content');
-  if (local) {
-   C = JSON.parse(local);
-  } else {
-   try {
-    const { data: row, error } = await supa.from('site_content').select('data').eq('id', 1).single();
-    if (row && row.data) C = row.data; else throw new Error('empty');
-   } catch(e2) {
-    C = await fetch('content.json?v=' + Date.now(), { cache: 'no-store' }).then(r => r.json());
+  // نسخة الجهاز المحلية مقابل نسخة السيرفر: الأحدث يكسب، والمهمَلة تُحفظ كنسخة احتياطية ولا تُمسح
+  let local = null, localAt = null;
+  try {
+   const raw = localStorage.getItem('kyn_content');
+   if (raw) { local = JSON.parse(raw); localAt = localStorage.getItem('kyn_content_savedAt'); }
+  } catch(e0) {}
+  let serverData = null, serverAt = null;
+  try {
+   const { data: row, error } = await supa.from('site_content').select('data,updated_at').eq('id', 1).single();
+   if (row && row.data) { serverData = row.data; serverAt = row.updated_at || null; }
+  } catch(e2) {}
+  if (local && serverData) {
+   const localNewer = localAt && (!serverAt || new Date(localAt) >= new Date(serverAt));
+   if (localNewer) {
+    C = local;
+   } else {
+    try { localStorage.setItem('kyn_content_superseded', JSON.stringify(local)); } catch(e3) {}
+    C = serverData;
+    try {
+     localStorage.setItem('kyn_content', JSON.stringify(C));
+     if (serverAt) localStorage.setItem('kyn_content_savedAt', serverAt);
+    } catch(e3) {}
    }
+  } else if (local) {
+   C = local;
+  } else if (serverData) {
+   C = serverData;
+  } else {
+   C = await fetch('content.json?v=' + Date.now(), { cache: 'no-store' }).then(r => r.json());
   }
  } catch(e) {
   try { C = await fetch('content.json', { cache: 'no-store' }).then(r => r.json()); } catch(e2){}
