@@ -195,7 +195,7 @@ body.kyn-edit-mode .fi:hover .kyn-item-ctrls{display:flex}
 .kyn-bar-btn:hover{background:rgba(255,255,255,.16);border-color:var(--gold);color:var(--gold)}
 .kyn-bar-btn.active{background:var(--gold);color:#0A1E36;border-color:var(--gold)}
 .kyn-bar-btn.save-btn{background:var(--gold);color:#0A1E36;border:0;font-weight:700}
-.kyn-bar-btn.save-btn:disabled{opacity:.4;cursor:not-allowed;background:rgba(245,184,0,.25);color:#9FB3CC}
+.kyn-bar-btn.save-btn:disabled{opacity:.6;cursor:not-allowed;background:rgba(245,184,0,.25);color:#C7D6EA}
 .kyn-bar-btn.logout-btn{background:transparent;border-color:rgba(255,100,100,.3);color:#ff9e9e}
 .kyn-bar-btn.logout-btn:hover{background:rgba(255,80,80,.2);border-color:#ff4d4d;color:#fff}
 
@@ -398,18 +398,15 @@ body.kyn-edit-mode .kyn-add-card{display:flex}
 
 /* ==================== لوحة التحكم على الموبايل والتابلت ==================== */
 @media(max-width:900px){
- :root{--kynbar-h:98px}
+ :root{--kynbar-h:148px}
  #kynAdminBar{padding:8px 10px 6px}
  .kyn-bar-w{flex-direction:column;align-items:stretch;gap:8px}
  .kyn-bar-left{justify-content:space-between;flex-wrap:nowrap;gap:8px;min-width:0}
  .kyn-brand{font-size:13px;letter-spacing:.18em}
  .kyn-badge{font-size:10px;padding:2px 7px;white-space:nowrap}
  .kyn-dirty-pill{font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
- .kyn-bar-actions{
-  overflow-x:auto;overflow-y:hidden;flex-wrap:nowrap;gap:6px;
-  padding-bottom:2px;-webkit-overflow-scrolling:touch;scrollbar-width:none;
- }
- .kyn-bar-actions::-webkit-scrollbar{display:none}
+ .kyn-bar-actions{flex-wrap:wrap;gap:6px}
+ .kyn-brand{display:none}
  .kyn-bar-btn{flex:0 0 auto;padding:9px 14px;font-size:12px;white-space:nowrap;border-radius:17px;min-height:36px}
  .kyn-bar-actions #btnSaveAdmin{order:-1}
  .kyn-bar-actions .save-btn{box-shadow:0 0 0 2px rgba(245,184,0,.35)}
