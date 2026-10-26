@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Kynship | كينشب — نسخة معاينة</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap">
+<style>
+:root{--bg:#0A1E36;--soft:#0F2B4C;--deep:#081628;--card:#12335a;--ink:#F4F1E8;--mute:#9FB3CC;--gold:#F5B800;--gd:#8a6700;--line:rgba(244,241,232,.16)}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:Cairo,Tahoma,sans-serif;line-height:1.8;font-weight:400;overflow-x:hidden}
+a{color:inherit}
+.bar{background:var(--bg);color:var(--gold);text-align:center;font-size:13px;padding:6px;border-bottom:1px solid var(--line)}
+nav{position:sticky;top:0;z-index:9;background:var(--bg);border-bottom:1px solid var(--line)}
+nav .w{max-width:1180px;margin:auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{font-weight:900;font-size:22px;letter-spacing:.45em;text-decoration:none;color:var(--ink)}
+nav ul{display:flex;gap:30px;list-style:none;padding:0}
+nav ul a{text-decoration:none;font-size:15px;color:var(--ink)}
+nav ul a:hover{color:var(--gold)}
+.btn{display:inline-block;background:var(--gold);color:#0A1E36;padding:11px 28px;border:0;border-radius:30px;cursor:pointer;text-decoration:none;font:700 15px Cairo,sans-serif}
+.btn.o{background:none;color:var(--ink);border:1px solid rgba(244,241,232,.4)}
+@media(max-width:760px){nav ul{display:none}}
+/* hero */
+.hero{min-height:92svh;display:grid;place-items:center;position:relative;overflow:hidden;text-align:center;background:radial-gradient(900px 420px at 80% 0,#235b96 0,transparent 70%),linear-gradient(160deg,#0F2B4C,#081628);padding:60px 24px}
+.hero h1{font-weight:900;font-size:clamp(40px,7.5vw,86px);line-height:1.35;color:var(--ink)}
+.hero h1 .g{color:var(--gold)}
+.gy{position:relative}.gy:after{content:"";position:absolute;left:50%;bottom:.02em;width:.13em;height:.13em;border-radius:50%;background:var(--gold);transform:translateX(-50%)}
+.hero p{font-weight:600;font-size:clamp(16px,2.4vw,22px);color:var(--mute);margin:14px auto 26px;max-width:52ch}
+.hero .cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.fl{position:absolute;width:var(--z,70px);height:var(--z,70px);border-radius:24%;will-change:transform;display:grid;place-items:center;box-shadow:0 .5em 1.2em rgba(0,0,0,.35),inset 0 .1em .18em rgba(255,255,255,.35)}
+.fl svg{width:58%;height:58%}
+.t-n{background:linear-gradient(145deg,#1d4a7c,#0a1c34)}
+.t-g{background:linear-gradient(145deg,#f5c845,#8a6700)}
+.t-n2{background:linear-gradient(145deg,#2b5e97,#0f2b4c)}
+.t-g2{background:linear-gradient(145deg,#e9b81f,#6d5200)}
+.t-n svg{stroke:#F5B800}.t-n2 svg{stroke:#9FB3CC}.t-g svg,.t-g2 svg{stroke:#0A1E36}
+/* pinned story */
+.st{position:relative}
+.pin{position:sticky;top:0;height:100svh;display:grid;place-items:center;overflow:hidden;padding:60px 24px;text-align:center}
+.big{font-weight:900;font-size:clamp(22px,6.2vw,52px);line-height:1.9;max-width:min(880px,94vw)}
+.w{opacity:.18}.ph{white-space:nowrap}
+.ic{display:inline-grid;place-items:center;height:1.4em;width:1.4em;border-radius:28%;vertical-align:-.3em;margin-inline:.18em;box-shadow:0 .12em .32em rgba(3,8,16,.4),inset 0 .07em .12em rgba(255,255,255,.5)}
+.ic svg{width:62%;height:62%}
+.abs{position:absolute;inset:80px 24px;display:grid;place-items:center;transition:opacity .3s}
+.four{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;max-width:1000px;width:100%}
+.four .fc{background:var(--card);border:1px solid rgba(245,184,0,.28);border-radius:20px;padding:22px 14px;transition:transform .5s,box-shadow .5s}
+.four .fc:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(3,8,16,.45)}
+.four .ic{width:64px;height:64px;margin:0 auto 12px}
+.four b{font-weight:900;font-size:17px;display:block;color:var(--gold)}
+.four p{font-size:12px;font-weight:600;color:var(--mute);line-height:1.8;margin-top:6px}
+@media(max-width:760px){.four{grid-template-columns:1fr 1fr}}
+/* features list */
+.st2{position:relative;background:var(--deep);transition:background-color .6s}
+.list{display:grid;gap:26px;width:min(560px,90%)}
+.li{display:flex;gap:14px;align-items:center;font-weight:900;font-size:clamp(18px,2.8vw,28px);color:var(--ink);opacity:.35;transition:opacity .4s,text-shadow .4s;text-align:right}
+.li small{display:block;font-weight:600;font-size:12px;color:var(--mute)}
+.li.on{opacity:1;text-shadow:0 0 18px rgba(245,184,0,.5)}
+.li .ic{width:44px;height:44px;flex:none}
+/* CTA */
+.k{min-height:92svh;display:grid;place-items:center;position:relative;overflow:hidden;background:linear-gradient(160deg,#0F2B4C,#081628);text-align:center;padding:60px 24px}
+.k h2{font-weight:900;font-size:clamp(38px,6.8vw,80px);line-height:1.4;color:var(--ink)}
+.k p{font-weight:700;font-size:clamp(16px,2.6vw,24px);margin-top:8px;color:var(--mute);max-width:46ch;margin-inline:auto}
+.k .btn{margin-top:22px;padding:14px 40px;font-size:17px}
+.k .lk{margin-top:18px;color:var(--gold);font:600 15px Cairo;display:inline-flex;gap:8px;text-decoration:none;direction:ltr}
+footer{color:var(--mute);text-align:center;padding:30px;font:600 12px Cairo;border-top:1px solid var(--line);background:var(--bg)}
+</style>
+</head>
+<body>
+<div class="bar">ضمان لحد 10 سنين · استشارة تصميم مجانية</div>
+<nav><div class="w">
+ <a class="logo" href="#top">KYNSHIP</a>
+ <ul><li><a href="#story">قصتنا</a></li><li><a href="#cats">الأقسام</a></li><li><a href="#features">ليه كينشب</a></li></ul>
+ <a class="btn" href="https://wa.me/201010104140" rel="noopener">اطلب عرض سعر</a>
+</div></nav>
+
+<header class="hero" id="top">
+ <span class="fl t-n" data-s=".22" style="--z:64px;top:12%;right:7%"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M12 4v16M8 9h.01M16 9h.01M8 15h.01M16 15h.01"/></svg></span>
+ <span class="fl t-g" data-s="-.16" style="--z:56px;top:14%;left:9%"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17 17 3l4 4L7 21H3v-4z"/><path d="m13 7 4 4"/></svg></span>
+ <span class="fl t-n2" data-s=".12" style="--z:58px;bottom:16%;right:12%"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M4 9h16M4 15h16M12 3v18"/></svg></span>
+ <span class="fl t-g2" data-s="-.2" style="--z:52px;bottom:14%;left:11%"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 7v10l9 5 9-5V7l-9-5z"/><path d="M3 7l9 5 9-5M12 12v10"/></svg></span>
+ <div>
+  <h1>دقة في <span class="g">كل</span> قطعة<span class="gy">.</span></h1>
+  <p>تفصيل مطابخ ودواليب وألوميتال في مصر كلها. مقرنا في الزقازيق، وبنخدم جميع المحافظات.</p>
+  <div class="cta"><a class="btn" href="https://kynship-theta.vercel.app/#lab" rel="noopener">صمّم مطبخك</a><a class="btn o" href="#story">قصتنا</a></div>
+ </div>
+</header>
+
+<section class="st" id="story" style="height:420vh"><div class="pin">
+ <p class="big" id="txt"><span class="w">بدأنا</span> <span class="w">من</span> <span class="w">فكرة</span> <span class="w">بسيطة:</span> <span class="w">مطبخك</span> <span class="w">يستاهل</span> <span class="ph"><span class="w">دقة</span> <span class="w"><span class="ic t-g"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17 17 3l4 4L7 21H3v-4z"/><path d="m6 14 1.5 1.5M9 11l1.5 1.5M12 8l1.5 1.5"/></svg></span></span></span> <span class="w">في</span> <span class="w">كل</span> <span class="w">قطعة.</span> <span class="w">بنصمم</span> <span class="w">وننفذ</span> <span class="ph"><span class="w">مطابخ</span> <span class="w"><span class="ic t-n"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M12 4v16M8 9h.01M16 9h.01M8 15h.01M16 15h.01"/></svg></span></span></span> <span class="ph"><span class="w">ودواليب</span> <span class="w"><span class="ic t-g2"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M12 2v20M9 11h.01M15 11h.01"/></svg></span></span></span> <span class="w">وأعمال</span> <span class="ph"><span class="w">ألوميتال</span> <span class="w"><span class="ic t-n2"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M4 9h16M4 15h16M12 3v18"/></svg></span></span></span> <span class="w">على</span> <span class="w">المقاس.</span> <span class="w">مقرنا</span> <span class="w">في</span> <span class="w">الزقازيق،</span> <span class="w">وبنخدم</span> <span class="w">جميع</span> <span class="w">محافظات</span> <span class="ph"><span class="w">مصر.</span> <span class="w"><span class="ic t-g"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span></span></span></p>
+ <div class="abs" id="row" style="opacity:0"><div class="four">
+  <div class="fc"><span class="ic t-n"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M12 4v16M8 9h.01M16 9h.01M8 15h.01M16 15h.01"/></svg></span><b>مطابخ</b><p>تفصيل وتنفيذ على مقاس مكانك.</p></div>
+  <div class="fc"><span class="ic t-g2"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M12 2v20M9 11h.01M15 11h.01"/></svg></span><b>دواليب وخزائن</b><p>خزائن ملابس وتخزين على المقاس.</p></div>
+  <div class="fc"><span class="ic t-n2"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M4 9h16M4 15h16M12 3v18"/></svg></span><b>ألوميتال</b><p>شبابيك وأبواب ألوميتال.</p></div>
+  <div class="fc"><span class="ic t-g"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 7v10l9 5 9-5V7l-9-5z"/><path d="M3 7l9 5 9-5M12 12v10"/></svg></span><b>تصاميم 3D</b><p>تصميم ثلاثي الأبعاد قبل التنفيذ.</p></div>
+ </div></div>
+</div></section>
+
+<section class="st2" id="features" style="height:300vh"><div class="pin">
+ <div class="list" id="list" style="opacity:0">
+  <div class="li"><span class="ic t-g"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.4 8.4 8 10 4.6-1.6 8-5 8-10V6l-8-4z"/><path d="m9 12 2 2 4-4"/></svg></span><span>ضمان 10 سنين<small>ضمان مكتوب على الخامات والتنفيذ مع خدمة ما بعد البيع.</small></span></div>
+  <div class="li"><span class="ic t-n"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 8h13v9H1zM14 11h4l3 3v3h-7z"/><circle cx="6" cy="19" r="1.6"/><circle cx="17" cy="19" r="1.6"/></svg></span><span>تسليم سريع<small>مواعيد واضحة والتزام بيها من القياس للتركيب.</small></span></div>
+  <div class="li"><span class="ic t-n2"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7a2.1 2.1 0 0 0-3-3l-7 7-2 5 5-2z"/><path d="m15 6 3 3"/></svg></span><span>استشارة تصميم مجانية<small>فريقنا يساعدك تختار التصميم والخامات المناسبة لمساحتك.</small></span></div>
+ </div>
+</div></section>
+
+<section class="k" id="contact">
+ <span class="fl t-g" data-s=".2" style="--z:60px;top:12%;right:8%"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M12 4v16M8 9h.01M16 9h.01M8 15h.01M16 15h.01"/></svg></span>
+ <span class="fl t-n2" data-s="-.15" style="--z:52px;top:16%;left:10%"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 7v10l9 5 9-5V7l-9-5z"/><path d="M3 7l9 5 9-5M12 12v10"/></svg></span>
+ <span class="fl t-n" data-s=".25" style="--z:54px;bottom:14%;right:12%"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+ <span class="fl t-g2" data-s="-.1" style="--z:48px;bottom:12%;left:12%"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17 17 3l4 4L7 21H3v-4z"/><path d="m13 7 4 4"/></svg></span>
+ <div>
+  <h2>اطلب عرض سعر<span class="gy">.</span></h2>
+  <p>اكتبلنا نوع الشغل والمقاسات أو صورة المكان، وهنرجعلك بالتفاصيل والسعر.</p>
+  <a class="btn" href="https://wa.me/201010104140" rel="noopener">ابعت على واتساب</a><br>
+  <a class="lk" href="https://kynship-theta.vercel.app" rel="noopener">kynship-theta.vercel.app</a>
+ </div>
+</section>
+
+<footer>Kynship | كينشب — نسخة معاينة مؤقتة</footer>
+
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)},cl=function(v){return Math.max(0,Math.min(1,v))};
+function pr(el){var r=el.getBoundingClientRect();return cl(-r.top/(r.height-innerHeight))}
+var s2=$('story'),s3=$('features'),ws=[].slice.call(document.querySelectorAll('#txt .w')),li=[].slice.call(document.querySelectorAll('.li')),fl=[].slice.call(document.querySelectorAll('.fl')),fc=[].slice.call(document.querySelectorAll('#row .fc'));
+var rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+function run(){
+ var p=pr(s2),k=cl(p/.55),t=cl((p-.62)/.1),t0=cl((p-.56)/.05);
+ ws.forEach(function(e,i){e.style.opacity=.18+.82*cl(k*ws.length-i)});
+ $('txt').style.opacity=1-t0;$('row').style.opacity=cl(t*2);
+ fc.forEach(function(e,i){var u=1-cl((t-i*.08)/.6);e.style.transform='translateY('+u*40+'px) scale('+(1-u*.12)+')'});
+ p=pr(s3);
+ $('list').style.opacity=p>.04?1:0;
+ var n=Math.floor(cl((p-.06)/.8)*(li.length-.01));li.forEach(function(e,i){e.classList.toggle('on',i<=n)});
+ if(rm)return;var vh=innerHeight;
+ fl.forEach(function(e){var r=e.parentNode.getBoundingClientRect(),d=r.top+r.height/2-vh/2,s=parseFloat(e.dataset.s);e.style.transform='translateY('+d*s+'px) rotate('+d*s*.1+'deg)'});
+}
+var _m=location.hash.match(/y=(\d+)/);if(_m)setTimeout(function(){scrollTo(0,+_m[1])},350);
+var tk=false;addEventListener('scroll',function(){if(!tk){tk=true;requestAnimationFrame(function(){tk=false;run()})}},{passive:true});addEventListener('resize',run);run();
+})();
+</script>
+</body>
+</html>
