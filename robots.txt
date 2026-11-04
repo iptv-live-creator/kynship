@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /admin.html
 
-Sitemap: https://kynship-theta.vercel.app/sitemap.xml
+Sitemap: https://kynship.pages.dev/sitemap.xml
